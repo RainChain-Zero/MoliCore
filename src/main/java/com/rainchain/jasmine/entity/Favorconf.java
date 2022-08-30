@@ -37,6 +37,12 @@ public class Favorconf implements Serializable {
     private Integer affinity;
 
     /**
+     *
+     */
+    @TableField(value = "cohesion")
+    private Integer cohesion;
+
+    /**
      * 好感系统版本
      */
     @TableField(value = "favorVersion")
@@ -90,6 +96,7 @@ public class Favorconf implements Serializable {
         return (this.getQq() == null ? other.getQq() == null : this.getQq().equals(other.getQq()))
                 && (this.getFavor() == null ? other.getFavor() == null : this.getFavor().equals(other.getFavor()))
                 && (this.getAffinity() == null ? other.getAffinity() == null : this.getAffinity().equals(other.getAffinity()))
+                && (this.getCohesion() == null ? other.getCohesion() == null : this.getCohesion().equals(other.getCohesion()))
                 && (this.getFavorVersion() == null ? other.getFavorVersion() == null : this.getFavorVersion().equals(other.getFavorVersion()))
                 && (this.getLastTime() == null ? other.getLastTime() == null : this.getLastTime().equals(other.getLastTime()))
                 && (this.getTrust() == null ? other.getTrust() == null : this.getTrust().equals(other.getTrust()))
@@ -105,6 +112,7 @@ public class Favorconf implements Serializable {
         result = prime * result + ((getQq() == null) ? 0 : getQq().hashCode());
         result = prime * result + ((getFavor() == null) ? 0 : getFavor().hashCode());
         result = prime * result + ((getAffinity() == null) ? 0 : getAffinity().hashCode());
+        result = prime * result + ((getCohesion() == null) ? 0 : getCohesion().hashCode());
         result = prime * result + ((getFavorVersion() == null) ? 0 : getFavorVersion().hashCode());
         result = prime * result + ((getLastTime() == null) ? 0 : getLastTime().hashCode());
         result = prime * result + ((getTrust() == null) ? 0 : getTrust().hashCode());
@@ -123,6 +131,7 @@ public class Favorconf implements Serializable {
         sb.append(", qq=").append(qq);
         sb.append(", favor=").append(favor);
         sb.append(", affinity=").append(affinity);
+        sb.append(", cohesion=").append(cohesion);
         sb.append(", favorVersion=").append(favorVersion);
         sb.append(", lastTime=").append(lastTime);
         sb.append(", trust=").append(trust);

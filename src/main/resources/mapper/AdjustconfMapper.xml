@@ -6,7 +6,7 @@
     <select id="getAdjustConf" resultType="com.rainchain.jasmine.entity.Adjustconf">
         SELECT *
         FROM adjustconf
-        WHERE id = #{id}
+        WHERE qq = #{qq}
     </select>
 
     <insert id="setAdjustConf">

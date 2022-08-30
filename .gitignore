@@ -18,4 +18,4 @@ buildNumber.properties
 
 application.yml
 
-.idea/
+.idea/*

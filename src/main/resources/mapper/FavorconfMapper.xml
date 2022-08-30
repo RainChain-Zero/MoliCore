@@ -7,6 +7,7 @@
         <id property="qq" column="qq" jdbcType="VARCHAR"/>
         <result property="favor" column="favor" jdbcType="INTEGER"/>
         <result property="affinity" column="affinity" jdbcType="INTEGER"/>
+        <result property="cohesion" column="cohesion" jdbcType="INTEGER"/>
         <result property="favorVersion" column="favorVersion" jdbcType="INTEGER"/>
         <result property="lastTime" column="lastTime" jdbcType="INTEGER"/>
         <result property="trust" column="trust" jdbcType="INTEGER"/>
@@ -24,8 +25,8 @@
     </select>
 
     <insert id="setFavorConf">
-        INSERT INTO favorconf (qq, favor, affinity, favorVersion, lastTime, trust, noticeQQ, regression, work)
-        VALUES (#{qq}, #{favor}, #{affinity}, #{favorVersion}, #{lastTime}, #{trust}, #{noticeQQ},
+        INSERT INTO favorconf (qq, favor, affinity, cohesion, favorVersion, lastTime, trust, noticeQQ, regression, work)
+        VALUES (#{qq}, #{favor}, #{affinity},#{cohesion}, #{favorVersion}, #{lastTime}, #{trust}, #{noticeQQ},
         #{regression,typeHandler=com.baomidou.mybatisplus.extension.handlers.FastjsonTypeHandler},
         #{work,typeHandler=com.baomidou.mybatisplus.extension.handlers.FastjsonTypeHandler}) ON DUPLICATE KEY
         UPDATE
@@ -35,6 +36,9 @@
             </if>
             <if test="affinity!=null">
                 affinity = #{affinity},
+            </if>
+            <if test="cohesion!=null">
+                cohesion=#{cohesion},
             </if>
             <if test="favorVersion!=null">
                 favorVersion = #{favorVersion},

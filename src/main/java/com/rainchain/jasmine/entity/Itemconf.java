@@ -1,6 +1,5 @@
 package com.rainchain.jasmine.entity;
 
-import com.alibaba.fastjson2.annotation.JSONField;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -25,8 +24,7 @@ public class Itemconf implements Serializable {
     /**
      *
      */
-    @TableField(value = "FL")
-    @JSONField(name = "FL")
+    @TableField(value = "fl")
     private Integer fl;
 
     /**

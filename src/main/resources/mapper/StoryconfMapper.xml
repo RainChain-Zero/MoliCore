@@ -54,7 +54,7 @@
                 mainIndex = #{mainIndex},
             </if>
             <if test="option!=null">
-                'option'=#{option},
+                `option`=#{option},
             </if>
             <if test="choice!=null">
                 choice=#{choice},
@@ -62,7 +62,7 @@
             <if test="choiceIndex!=null">
                 choiceIndex=#{choiceIndex},
             </if>
-            <if test="storyReadNow">
+            <if test="storyReadNow!=null">
                 storyReadNow=#{storyReadNow},
             </if>
             <if test="specialReadNow!=null">
@@ -98,7 +98,7 @@
             <if test="isMessageSent!=null">
                 isMessageSent=#{isMessageSent},
             </if>
-            <if test="isStory1Unlocked">
+            <if test="isStory1Unlocked!=null">
                 isStory1Unlocked=#{isStory1Unlocked},
             </if>
             <if test="actionRoundLeft!=null">

@@ -6,7 +6,7 @@
 
     <resultMap id="ItemResultMap" type="com.rainchain.jasmine.entity.Itemconf">
         <id property="qq" column="qq" jdbcType="VARCHAR"/>
-        <result property="fl" column="FL" jdbcType="INTEGER"/>
+        <result property="fl" column="fl" jdbcType="INTEGER"/>
         <result property="梦的开始" column="梦的开始" jdbcType="INTEGER"/>
         <result property="未言的期待" column="未言的期待" jdbcType="INTEGER"/>
         <result property="永恒之戒" column="永恒之戒" jdbcType="INTEGER"/>
@@ -33,7 +33,7 @@
     </select>
 
     <insert id="setItemConf">
-        INSERT INTO itemconf (qq, FL, 梦的开始, 未言的期待, 永恒之戒, 雪花糖, 袋装曲奇, 快乐水, pocky, 彩虹糖, 推理小说, 牛奶, 冰激凌, 可颂, 巧克力, 发簪, 寿司, 薯片,
+        INSERT INTO itemconf (qq, fl, 梦的开始, 未言的期待, 永恒之戒, 雪花糖, 袋装曲奇, 快乐水, pocky, 彩虹糖, 推理小说, 牛奶, 冰激凌, 可颂, 巧克力, 发簪, 寿司, 薯片,
         定制reply)
         VALUES ( #{qq}, #{fl}, #{梦的开始}, #{未言的期待}, #{永恒之戒}, #{雪花糖}, #{袋装曲奇}, #{快乐水}, #{pocky},
         #{彩虹糖}, #{推理小说}, #{牛奶}, #{冰激凌}, #{可颂}, #{巧克力}, #{发簪}, #{寿司}, #{薯片}, #{定制reply})
@@ -41,7 +41,7 @@
         UPDATE
         <trim suffixOverrides=",">
             <if test="fl!=null">
-                FL = #{fl},
+                fl = #{fl},
             </if>
             <if test="梦的开始!=null">
                 梦的开始 = #{梦的开始},
