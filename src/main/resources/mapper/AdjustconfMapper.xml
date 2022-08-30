@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rainchain.jasmine.mapper.DataMapper">
+    <select id="getAdjustConf" resultType="com.rainchain.jasmine.entity.Adjustconf">
+        SELECT *
+        FROM adjustconf
+        WHERE id = #{id}
+    </select>
+
+    <insert id="setAdjustConf">
+        INSERT INTO adjustconf (qq, addFavorDDL_Cookie, addFavorDDLFlag_Cookie, favorTimePunishDownRate,
+        favorTimePunishDownDDL, favorTimePunishDownDDLFlag, addFavorPerActionDDL_Hairpin,
+        addFavorPerActionDDLFlag_Hairpin, addAffinityDDL_Sushi, addAffinityDDLFlag_Sushi)
+        VALUES (#{qq}, #{addFavorDDL_Cookie}, #{addFavorDDLFlag_Cookie}, #{favorTimePunishDownRate},
+        #{favorTimePunishDownDDL}, #{favorTimePunishDownDDLFlag}, #{addFavorPerActionDDL_Hairpin},
+        #{addFavorPerActionDDLFlag_Hairpin}, #{addAffinityDDL_Sushi}, #{addAffinityDDLFlag_Sushi})
+        ON DUPLICATE KEY
+        UPDATE
+        <trim suffixOverrides=",">
+            <if test="addFavorDDL_Cookie!=null">
+                addFavorDDL_Cookie = #{addFavorDDL_Cookie},
+            </if>
+            <if test="addFavorDDLFlag_Cookie!=null">
+                addFavorDDLFlag_Cookie = #{addFavorDDLFlag_Cookie},
+            </if>
+            <if test="favorTimePunishDownRate!=null">
+                favorTimePunishDownRate = #{favorTimePunishDownRate},
+            </if>
+            <if test="favorTimePunishDownDDL!=null">
+                favorTimePunishDownDDL=#{favorTimePunishDownDDL},
+            </if>
+            <if test="favorTimePunishDownDDLFlag!=null">
+                favorTimePunishDownDDLFlag=#{favorTimePunishDownDDLFlag},
+            </if>
+            <if test="addFavorPerActionDDL_Hairpin!=null">
+                addFavorPerActionDDL_Hairpin= #{addFavorPerActionDDL_Hairpin},
+            </if>
+            <if test="addFavorPerActionDDLFlag_Hairpin!=null">
+                addFavorPerActionDDLFlag_Hairpin=#{addFavorPerActionDDLFlag_Hairpin},
+            </if>
+            <if test="addAffinityDDL_Sushi!=null">
+                addAffinityDDL_Sushi=#{addAffinityDDL_Sushi},
+            </if>
+            <if test="addAffinityDDLFlag_Sushi!=null">
+                addAffinityDDLFlag_Sushi=#{addAffinityDDLFlag_Sushi}
+            </if>
+        </trim>
+
+    </insert>
+</mapper>

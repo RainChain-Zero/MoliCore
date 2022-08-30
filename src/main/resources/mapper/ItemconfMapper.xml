@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rainchain.jasmine.mapper.DataMapper">
+
+    <resultMap id="ItemResultMap" type="com.rainchain.jasmine.entity.Itemconf">
+        <id property="qq" column="qq" jdbcType="VARCHAR"/>
+        <result property="fl" column="FL" jdbcType="INTEGER"/>
+        <result property="梦的开始" column="梦的开始" jdbcType="INTEGER"/>
+        <result property="未言的期待" column="未言的期待" jdbcType="INTEGER"/>
+        <result property="永恒之戒" column="永恒之戒" jdbcType="INTEGER"/>
+        <result property="雪花糖" column="雪花糖" jdbcType="INTEGER"/>
+        <result property="袋装曲奇" column="袋装曲奇" jdbcType="INTEGER"/>
+        <result property="快乐水" column="快乐水" jdbcType="INTEGER"/>
+        <result property="pocky" column="pocky" jdbcType="INTEGER"/>
+        <result property="彩虹糖" column="彩虹糖" jdbcType="INTEGER"/>
+        <result property="推理小说" column="推理小说" jdbcType="INTEGER"/>
+        <result property="牛奶" column="牛奶" jdbcType="INTEGER"/>
+        <result property="冰激凌" column="冰激凌" jdbcType="INTEGER"/>
+        <result property="可颂" column="可颂" jdbcType="INTEGER"/>
+        <result property="巧克力" column="巧克力" jdbcType="INTEGER"/>
+        <result property="发簪" column="发簪" jdbcType="INTEGER"/>
+        <result property="寿司" column="寿司" jdbcType="INTEGER"/>
+        <result property="薯片" column="薯片" jdbcType="INTEGER"/>
+        <result property="定制reply" column="定制reply" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="getItemConf" resultMap="ItemResultMap">
+        SELECT *
+        FROM itemconf
+        WHERE qq = #{qq}
+    </select>
+
+    <insert id="setItemConf">
+        INSERT INTO itemconf (qq, FL, 梦的开始, 未言的期待, 永恒之戒, 雪花糖, 袋装曲奇, 快乐水, pocky, 彩虹糖, 推理小说, 牛奶, 冰激凌, 可颂, 巧克力, 发簪, 寿司, 薯片,
+        定制reply)
+        VALUES ( #{qq}, #{fl}, #{梦的开始}, #{未言的期待}, #{永恒之戒}, #{雪花糖}, #{袋装曲奇}, #{快乐水}, #{pocky},
+        #{彩虹糖}, #{推理小说}, #{牛奶}, #{冰激凌}, #{可颂}, #{巧克力}, #{发簪}, #{寿司}, #{薯片}, #{定制reply})
+        ON DUPLICATE KEY
+        UPDATE
+        <trim suffixOverrides=",">
+            <if test="fl!=null">
+                FL = #{fl},
+            </if>
+            <if test="梦的开始!=null">
+                梦的开始 = #{梦的开始},
+            </if>
+            <if test="未言的期待!=null">
+                未言的期待=#{未言的期待},
+            </if>
+            <if test="永恒之戒!=null">
+                永恒之戒=#{永恒之戒},
+            </if>
+            <if test="雪花糖!=null">
+                雪花糖=#{雪花糖},
+            </if>
+            <if test="袋装曲奇!=null">
+                袋装曲奇=#{袋装曲奇},
+            </if>
+            <if test="快乐水!=null">
+                快乐水=#{快乐水},
+            </if>
+            <if test="pocky!=null">
+                pocky=#{pocky},
+            </if>
+            <if test="彩虹糖!=null">
+                彩虹糖=#{彩虹糖},
+            </if>
+            <if test="推理小说!=null">
+                推理小说=#{推理小说},
+            </if>
+            <if test="牛奶!=null">
+                牛奶=#{牛奶},
+            </if>
+            <if test="冰激凌!=null">
+                冰激凌=#{冰激凌},
+            </if>
+            <if test="可颂!=null">
+                可颂=#{可颂},
+            </if>
+            <if test="巧克力!=null">
+                巧克力=#{巧克力},
+            </if>
+            <if test="发簪!=null">
+                发簪=#{发簪},
+            </if>
+            <if test="寿司!=null">
+                寿司=#{寿司},
+            </if>
+            <if test="薯片!=null">
+                薯片=#{薯片},
+            </if>
+            <if test="定制reply!=null">
+                定制reply=#{定制reply}
+            </if>
+        </trim>
+
+    </insert>
+</mapper>

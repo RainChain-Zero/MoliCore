@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.rainchain.jasmine.mapper.DataMapper">
+
+    <resultMap id="FavorResultMap" type="com.rainchain.jasmine.entity.Favorconf">
+        <id property="qq" column="qq" jdbcType="VARCHAR"/>
+        <result property="favor" column="favor" jdbcType="INTEGER"/>
+        <result property="affinity" column="affinity" jdbcType="INTEGER"/>
+        <result property="favorVersion" column="favorVersion" jdbcType="INTEGER"/>
+        <result property="lastTime" column="lastTime" jdbcType="INTEGER"/>
+        <result property="trust" column="trust" jdbcType="INTEGER"/>
+        <result property="noticeQQ" column="noticeQQ" jdbcType="INTEGER"/>
+        <result property="regression" column="regression" jdbcType="VARCHAR"
+                typeHandler="com.baomidou.mybatisplus.extension.handlers.FastjsonTypeHandler"/>
+        <result property="work" column="work" jdbcType="VARCHAR"
+                typeHandler="com.baomidou.mybatisplus.extension.handlers.FastjsonTypeHandler"/>
+    </resultMap>
+
+    <select id="getFavorconf" resultMap="FavorResultMap">
+        SELECT *
+        FROM favorconf
+        WHERE qq = #{qq}
+    </select>
+
+    <insert id="setFavorConf">
+        INSERT INTO favorconf (qq, favor, affinity, favorVersion, lastTime, trust, noticeQQ, regression, work)
+        VALUES (#{qq}, #{favor}, #{affinity}, #{favorVersion}, #{lastTime}, #{trust}, #{noticeQQ},
+        #{regression,typeHandler=com.baomidou.mybatisplus.extension.handlers.FastjsonTypeHandler},
+        #{work,typeHandler=com.baomidou.mybatisplus.extension.handlers.FastjsonTypeHandler}) ON DUPLICATE KEY
+        UPDATE
+        <trim suffixOverrides=",">
+            <if test="favor!=null">
+                favor = #{favor},
+            </if>
+            <if test="affinity!=null">
+                affinity = #{affinity},
+            </if>
+            <if test="favorVersion!=null">
+                favorVersion = #{favorVersion},
+            </if>
+            <if test="lastTime!=null">
+                lastTime = #{lastTime},
+            </if>
+            <if test="trust!=null">
+                trust = #{trust},
+            </if>
+            <if test="noticeQQ!=null">
+                noticeQQ = #{noticeQQ},
+            </if>
+            <if test="regression!=null">
+                regression = #{regression,typeHandler=com.baomidou.mybatisplus.extension.handlers.FastjsonTypeHandler},
+            </if>
+            <if test="work!=null">
+                work = #{work,typeHandler=com.baomidou.mybatisplus.extension.handlers.FastjsonTypeHandler}
+            </if>
+        </trim>
+
+    </insert>
+</mapper>

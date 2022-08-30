@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rainchain.jasmine.mapper.DataMapper">
+
+    <resultMap id="TradeResultMap" type="com.rainchain.jasmine.entity.Tradeconf">
+        <id property="qq" column="qq" jdbcType="VARCHAR"/>
+        <result property="itemRequest" column="itemRequest" jdbcType="VARCHAR"/>
+        <result property="itemRequestNum" column="itemRequestNum" jdbcType="INTEGER"/>
+        <result property="itemReceive" column="itemReceive" jdbcType="VARCHAR"/>
+        <result property="itemReceiveNum" column="itemReceiveNum" jdbcType="INTEGER"/>
+        <result property="tradeReceive" column="tradeReceive" jdbcType="VARCHAR"/>
+        <result property="tradeRequest" column="tradeRequest" jdbcType="VARCHAR"/>
+        <result property="isInGroup" column="isInGroup" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="getTradeConf" resultMap="TradeResultMap">
+        SELECT *
+        FROM tradeconf
+        WHERE qq = #{qq}
+    </select>
+
+    <insert id="setTradeConf">
+        INSERT INTO tradeconf (qq, itemRequest, itemRequestNum, itemReceive, itemReceiveNum, tradeReceive, tradeRequest,
+        isInGroup)
+        VALUES (#{qq}, #{itemRequest}, #{itemRequestNum}, #{itemReceive}, #{itemReceiveNum}, #{tradeReceive},
+        #{tradeRequest},
+        #{isInGroup})
+        ON DUPLICATE KEY UPDATE
+        <trim suffixOverrides=",">
+            <if test="itemRequest!=null">
+                itemRequest=#{itemRequest},
+            </if>
+            <if test="itemRequestNum!=null">
+                itemRequestNum=#{itemRequestNum},
+            </if>
+            <if test="itemReceive!=null">
+                itemReceive=#{itemReceive},
+            </if>
+            <if test="itemReceiveNum!=null">
+                itemReceiveNum=#{itemReceiveNum},
+            </if>
+            <if test="tradeReceive!=null">
+                tradeReceive=#{tradeReceive},
+            </if>
+            <if test="tradeRequest!=null">
+                tradeRequest=#{tradeRequest},
+            </if>
+            <if test="isInGroup!=null">
+                isInGroup=#{isInGroup}
+            </if>
+        </trim>
+    </insert>
+</mapper>

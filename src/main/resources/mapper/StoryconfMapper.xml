@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rainchain.jasmine.mapper.DataMapper">
+
+    <resultMap id="StoryResultMap" type="com.rainchain.jasmine.entity.Storyconf">
+        <id property="qq" column="qq" jdbcType="VARCHAR"/>
+        <result property="mainIndex" column="mainIndex" jdbcType="INTEGER"/>
+        <result property="option" column="option" jdbcType="INTEGER"/>
+        <result property="choice" column="choice" jdbcType="INTEGER"/>
+        <result property="choiceIndex" column="choiceIndex" jdbcType="INTEGER"/>
+        <result property="storyReadNow" column="storyReadNow" jdbcType="INTEGER"/>
+        <result property="specialReadNow" column="specialReadNow" jdbcType="INTEGER"/>
+        <result property="nextOption" column="nextOption" jdbcType="INTEGER"/>
+        <result property="entryCheckStory" column="entryCheckStory" jdbcType="INTEGER"/>
+        <result property="storyUnlockedNotice" column="storyUnlockedNotice" jdbcType="VARCHAR"/>
+        <result property="specialUnlockedNotice" column="specialUnlockedNotice" jdbcType="VARCHAR"/>
+        <result property="choiceSelected0" column="choiceSelected0" jdbcType="INTEGER"/>
+        <result property="isStory0Read" column="isStory0Read" jdbcType="INTEGER"/>
+        <result property="isSpecial0Read" column="isSpecial0Read" jdbcType="INTEGER"/>
+        <result property="special0Option3" column="Special0Option3" jdbcType="INTEGER"/>
+        <result property="special0Flag" column="special0Flag" jdbcType="INTEGER"/>
+        <result property="isMessageSent" column="isMessageSent" jdbcType="INTEGER"/>
+        <result property="isStory1Unlocked" column="isStory1Unlocked" jdbcType="INTEGER"/>
+        <result property="actionRoundLeft" column="actionRoundLeft" jdbcType="INTEGER"/>
+        <result property="isShopUnlocked" column="isShopUnlocked" jdbcType="INTEGER"/>
+        <result property="isStory1Option1Choice3" column="isStory1Option1Choice3" jdbcType="INTEGER"/>
+        <result property="story2Choice" column="story2Choice" jdbcType="INTEGER"/>
+        <result property="isStory3Read" column="isStory3Read" jdbcType="INTEGER"/>
+        <result property="isSpecial1Read" column="isSpecial1Read" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="getStoryConf" resultMap="StoryResultMap">
+        SELECT *
+        FROM storyconf
+        WHERE qq = #{qq}
+    </select>
+
+    <insert id="setStoryConf">
+        INSERT INTO storyconf (qq, mainIndex, `option`, choice, choiceIndex, storyReadNow, specialReadNow, nextOption,
+        entryCheckStory, storyUnlockedNotice, specialUnlockedNotice, choiceSelected0, isStory0Read, isSpecial0Read,
+        special0Option3, special0Flag, isMessageSent, isStory1Unlocked, actionRoundLeft, isShopUnlocked,
+        isStory1Option1Choice3, story2Choice, isStory3Read, isSpecial1Read)
+        VALUES (#{qq}, #{mainIndex}, #{option}, #{choice}, #{choiceIndex}, #{storyReadNow}, #{specialReadNow},
+        #{nextOption},
+        #{entryCheckStory}, #{storyUnlockedNotice}, #{specialUnlockedNotice}, #{choiceSelected0},
+        #{isStory0Read}, #{isSpecial0Read}, #{special0Option3}, #{special0Flag}, #{isMessageSent},
+        #{isStory1Unlocked}, #{actionRoundLeft}, #{isShopUnlocked}, #{isStory1Option1Choice3}, #{story2Choice},
+        #{isStory3Read}, #{isSpecial1Read})
+        ON DUPLICATE KEY UPDATE
+        <trim suffixOverrides=",">
+            <if test="mainIndex!=null">
+                mainIndex = #{mainIndex},
+            </if>
+            <if test="option!=null">
+                'option'=#{option},
+            </if>
+            <if test="choice!=null">
+                choice=#{choice},
+            </if>
+            <if test="choiceIndex!=null">
+                choiceIndex=#{choiceIndex},
+            </if>
+            <if test="storyReadNow">
+                storyReadNow=#{storyReadNow},
+            </if>
+            <if test="specialReadNow!=null">
+                specialReadNow=#{specialReadNow},
+            </if>
+            <if test="nextOption!=null">
+                nextOption=#{nextOption},
+            </if>
+            <if test="entryCheckStory!=null">
+                entryCheckStory=#{entryCheckStory},
+            </if>
+            <if test="storyUnlockedNotice!=null">
+                storyUnlockedNotice=#{storyUnlockedNotice},
+            </if>
+            <if test="specialUnlockedNotice!=null">
+                specialUnlockedNotice=#{specialUnlockedNotice},
+            </if>
+            <if test="choiceSelected0!=null">
+                choiceSelected0=#{choiceSelected0},
+            </if>
+            <if test="isStory0Read!=null">
+                isStory0Read=#{isStory0Read},
+            </if>
+            <if test="isSpecial0Read!=null">
+                isSpecial0Read=#{isSpecial0Read},
+            </if>
+            <if test="special0Option3!=null">
+                special0Option3=#{special0Option3},
+            </if>
+            <if test="special0Flag!=null">
+                special0Flag=#{special0Flag},
+            </if>
+            <if test="isMessageSent!=null">
+                isMessageSent=#{isMessageSent},
+            </if>
+            <if test="isStory1Unlocked">
+                isStory1Unlocked=#{isStory1Unlocked},
+            </if>
+            <if test="actionRoundLeft!=null">
+                actionRoundLeft=#{actionRoundLeft},
+            </if>
+            <if test="isShopUnlocked!=null">
+                isShopUnlocked=#{isShopUnlocked},
+            </if>
+            <if test="isStory1Option1Choice3!=null">
+                isStory1Option1Choice3=#{isStory1Option1Choice3},
+            </if>
+            <if test="story2Choice!=null">
+                story2Choice=#{story2Choice},
+            </if>
+            <if test="isStory3Read!=null">
+                isStory3Read=#{isStory3Read},
+            </if>
+            <if test="isSpecial1Read!=null">
+                isSpecial1Read=#{isSpecial1Read}
+            </if>
+        </trim>
+
+    </insert>
+</mapper>
