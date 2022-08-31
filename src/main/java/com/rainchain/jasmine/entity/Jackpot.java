@@ -36,11 +36,6 @@ public class Jackpot implements Serializable {
     private Integer price;
 
     /*
-     * Response，抽奖产生的额外fl变化
-     * */
-    private Integer flChange = 0;
-
-    /*
      * Response，当前奖池的价值平均
      * */
     private Double avg;
@@ -63,7 +58,7 @@ public class Jackpot implements Serializable {
         return (this.getNum() == null ? other.getNum() == null : this.getNum().equals(other.getNum()))
                 && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
                 && (this.getPrice() == null ? other.getPrice() == null : this.getPrice().equals(other.getPrice()))
-                && (this.getFlChange() == null ? other.getFlChange() == null : this.getFlChange().equals(other.getFlChange()));
+                && (this.getAvg() == null ? other.getAvg() == null : this.getAvg().equals(other.getAvg()));
     }
 
     @Override
@@ -73,7 +68,7 @@ public class Jackpot implements Serializable {
         result = prime * result + ((getNum() == null) ? 0 : getNum().hashCode());
         result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
         result = prime * result + ((getPrice() == null) ? 0 : getPrice().hashCode());
-        result = prime * result + ((getFlChange() == null) ? 0 : getFlChange().hashCode());
+        result = prime * result + ((getAvg() == null) ? 0 : getAvg().hashCode());
         return result;
     }
 
@@ -86,7 +81,7 @@ public class Jackpot implements Serializable {
         sb.append(", num=").append(num);
         sb.append(", name=").append(name);
         sb.append(", price=").append(price);
-        sb.append(", flChange=").append(flChange);
+        sb.append(", flChange=").append(avg);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
