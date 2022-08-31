@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rainchain.jasmine.mapper.JackpotMapper">
+    <update id="updateJackpotAvg">
+        UPDATE store
+        SET jackpotAvg = (SELECT AVG(price) FROM jackpot)
+        LIMIT 1
+    </update>
+
+    <select id="getJackpotAvg" resultType="decimal">
+        SELECT jackpotAvg
+        FROM store
+        LIMIT 1
+    </select>
+
+    <insert id="insertLottery">
+        INSERT INTO jackpot (num, name, price)
+        VALUES (#{num}, #{name}, #{price})
+    </insert>
+
+    <!-- 获取随机偏移量   -->
+    <select id="getOffset" resultType="integer">
+        SELECT FLOOR(RAND() * COUNT(*)) AS offset
+        FROM jackpot
+    </select>
+    <!-- 从奖池中随机抽取一个物品   -->
+    <select id="drawLottery" resultType="com.rainchain.jasmine.entity.Jackpot" parameterType="integer">
+        SELECT *
+        FROM jackpot
+        LIMIT ${offset},1
+    </select>
+
+    <delete id="deleteLottery" parameterType="integer">
+        DELETE
+        FROM jackpot
+        WHERE name = #{name}
+          AND num = ${num}
+          AND price = ${price}
+        LIMIT 1
+    </delete>
+</mapper>
