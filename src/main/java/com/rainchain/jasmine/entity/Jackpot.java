@@ -1,8 +1,10 @@
 package com.rainchain.jasmine.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
+import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -14,6 +16,10 @@ import java.io.Serializable;
 @TableName(value = "jackpot")
 @Data
 public class Jackpot implements Serializable {
+    @TableId(value = "qq")
+    @Length(min = 5, max = 10, message = "QQ号非法！")
+    private String qq;
+
     /**
      * 物品数量
      */
@@ -39,6 +45,12 @@ public class Jackpot implements Serializable {
      * Response，当前奖池的价值平均
      * */
     private Double avg;
+
+    /**
+     * Response,可选留言
+     */
+    @TableField(value = "msg")
+    private String msg;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

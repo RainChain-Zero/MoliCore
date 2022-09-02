@@ -18,7 +18,7 @@ public class JackpotController {
     @Autowired
     private JackpotService jackpotService;
 
-    @PostMapping("/drawLottery")
+    @PostMapping(value = "/drawLottery", produces = "application/json;charset=UTF-8")
     public Jackpot drawlottery(@RequestBody @Validated Jackpot jackpot) {
         return jackpotService.drawLottery(jackpot);
     }

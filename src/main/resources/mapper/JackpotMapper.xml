@@ -16,8 +16,8 @@
     </select>
 
     <insert id="insertLottery">
-        INSERT INTO jackpot (num, name, price)
-        VALUES (#{num}, #{name}, #{price})
+        INSERT INTO jackpot (qq, num, name, price, msg)
+        VALUES (#{qq}, #{num}, #{name}, #{price}, #{msg})
     </insert>
 
     <!-- 获取随机偏移量   -->
@@ -32,12 +32,20 @@
         LIMIT ${offset},1
     </select>
 
-    <delete id="deleteLottery" parameterType="integer">
+    <delete id="deleteLottery" parameterType="com.rainchain.jasmine.entity.Jackpot">
         DELETE
         FROM jackpot
-        WHERE name = #{name}
-          AND num = ${num}
-          AND price = ${price}
+        <where>
+            <if test="qq != null">
+                qq = #{qq}
+            </if>
+            <if test="msg != null">
+                AND msg = #{msg}
+            </if>
+            AND name = #{name}
+            AND num = ${num}
+            AND price = ${price}
+        </where>
         LIMIT 1
     </delete>
 </mapper>

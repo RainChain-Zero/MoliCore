@@ -1,8 +1,8 @@
 spring:
   datasource:
     username: root
-    password: admin
-    url: jdbc:mysql://localhost:3306/jasmine_users?useUnicode=true&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true&allowMultiQueries=true&serverTimezone=Asia/Shanghai
+    password: MilkCoco412
+    url: jdbc:mysql://localhost:24444/jasmine_users?useUnicode=true&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true&allowMultiQueries=true&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 mybatis:
