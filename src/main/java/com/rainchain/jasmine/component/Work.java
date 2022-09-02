@@ -11,5 +11,5 @@ import lombok.Data;
 public class Work {
     private Integer profit;
     private Boolean working;
-    private Integer DDL;
+    private Integer ddl;
 }
