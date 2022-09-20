@@ -12,10 +12,10 @@
     <insert id="setAdjustConf">
         INSERT INTO adjustconf (qq, addFavorDDL_Cookie, addFavorDDLFlag_Cookie, favorTimePunishDownRate,
         favorTimePunishDownDDL, favorTimePunishDownDDLFlag, addFavorPerActionDDL_Hairpin,
-        addFavorPerActionDDLFlag_Hairpin, addAffinityDDL_Sushi, addAffinityDDLFlag_Sushi)
+        addFavorPerActionDDLFlag_Hairpin, addAffinityDDL_Sushi, addAffinityDDLFlag_Sushi,icecreamEaten)
         VALUES (#{qq}, #{addFavorDDL_Cookie}, #{addFavorDDLFlag_Cookie}, #{favorTimePunishDownRate},
         #{favorTimePunishDownDDL}, #{favorTimePunishDownDDLFlag}, #{addFavorPerActionDDL_Hairpin},
-        #{addFavorPerActionDDLFlag_Hairpin}, #{addAffinityDDL_Sushi}, #{addAffinityDDLFlag_Sushi})
+        #{addFavorPerActionDDLFlag_Hairpin}, #{addAffinityDDL_Sushi}, #{addAffinityDDLFlag_Sushi},#{icecreamEaten})
         ON DUPLICATE KEY
         UPDATE
         <trim suffixOverrides=",">
@@ -45,6 +45,9 @@
             </if>
             <if test="addAffinityDDLFlag_Sushi!=null">
                 addAffinityDDLFlag_Sushi=#{addAffinityDDLFlag_Sushi}
+            </if>
+            <if test="icecreamEaten!=null">
+                icecreamEaten=#{icecreamEaten}
             </if>
         </trim>
 

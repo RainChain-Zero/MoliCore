@@ -27,8 +27,8 @@
             <option name="tableUIInfoList">
               <list>
                 <TableUIInfo>
-                  <option name="className" value="Jackpot" />
-                  <option name="tableName" value="jackpot" />
+                  <option name="className" value="Adjustconf" />
+                  <option name="tableName" value="adjustconf" />
                 </TableUIInfo>
               </list>
             </option>

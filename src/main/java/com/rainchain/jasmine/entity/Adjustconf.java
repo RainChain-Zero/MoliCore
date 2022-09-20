@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
-import org.hibernate.validator.constraints.Length;
 
 import java.io.Serializable;
 
@@ -18,7 +17,6 @@ public class Adjustconf implements Serializable {
      *
      */
     @TableId(value = "qq")
-    @Length(min = 5, max = 10, message = "QQ号非法！")
     private String qq;
 
     /**
@@ -75,6 +73,12 @@ public class Adjustconf implements Serializable {
     @TableField(value = "addAffinityDDLFlag_Sushi")
     private Integer addAffinityDDLFlag_Sushi;
 
+    /**
+     *
+     */
+    @TableField(value = "icecreamEaten")
+    private Integer icecreamEaten;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
@@ -99,7 +103,8 @@ public class Adjustconf implements Serializable {
                 && (this.getAddFavorPerActionDDL_Hairpin() == null ? other.getAddFavorPerActionDDL_Hairpin() == null : this.getAddFavorPerActionDDL_Hairpin().equals(other.getAddFavorPerActionDDL_Hairpin()))
                 && (this.getAddFavorPerActionDDLFlag_Hairpin() == null ? other.getAddFavorPerActionDDLFlag_Hairpin() == null : this.getAddFavorPerActionDDLFlag_Hairpin().equals(other.getAddFavorPerActionDDLFlag_Hairpin()))
                 && (this.getAddAffinityDDL_Sushi() == null ? other.getAddAffinityDDL_Sushi() == null : this.getAddAffinityDDL_Sushi().equals(other.getAddAffinityDDL_Sushi()))
-                && (this.getAddAffinityDDLFlag_Sushi() == null ? other.getAddAffinityDDLFlag_Sushi() == null : this.getAddAffinityDDLFlag_Sushi().equals(other.getAddAffinityDDLFlag_Sushi()));
+                && (this.getAddAffinityDDLFlag_Sushi() == null ? other.getAddAffinityDDLFlag_Sushi() == null : this.getAddAffinityDDLFlag_Sushi().equals(other.getAddAffinityDDLFlag_Sushi()))
+                && (this.getIcecreamEaten() == null ? other.getIcecreamEaten() == null : this.getIcecreamEaten().equals(other.getIcecreamEaten()));
     }
 
     @Override
@@ -116,6 +121,7 @@ public class Adjustconf implements Serializable {
         result = prime * result + ((getAddFavorPerActionDDLFlag_Hairpin() == null) ? 0 : getAddFavorPerActionDDLFlag_Hairpin().hashCode());
         result = prime * result + ((getAddAffinityDDL_Sushi() == null) ? 0 : getAddAffinityDDL_Sushi().hashCode());
         result = prime * result + ((getAddAffinityDDLFlag_Sushi() == null) ? 0 : getAddAffinityDDLFlag_Sushi().hashCode());
+        result = prime * result + ((getIcecreamEaten() == null) ? 0 : getIcecreamEaten().hashCode());
         return result;
     }
 
@@ -135,6 +141,7 @@ public class Adjustconf implements Serializable {
         sb.append(", addFavorPerActionDDLFlag_Hairpin=").append(addFavorPerActionDDLFlag_Hairpin);
         sb.append(", addAffinityDDL_Sushi=").append(addAffinityDDL_Sushi);
         sb.append(", addAffinityDDLFlag_Sushi=").append(addAffinityDDLFlag_Sushi);
+        sb.append(", icecreamEaten=").append(icecreamEaten);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
