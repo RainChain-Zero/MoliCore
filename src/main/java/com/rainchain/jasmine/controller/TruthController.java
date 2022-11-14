@@ -1,5 +1,6 @@
 package com.rainchain.jasmine.controller;
 
+import com.rainchain.jasmine.component.TruthAnswer;
 import com.rainchain.jasmine.entity.Truth;
 import com.rainchain.jasmine.service.TruthService;
 import org.springframework.web.bind.annotation.*;
@@ -29,5 +30,8 @@ public class TruthController {
         truthService.addTruth(truth);
     }
 
-    
+    @PostMapping("/answer")
+    public void answerTruth(@Valid @RequestBody TruthAnswer truthAnswer) {
+        truthService.answerTruth(truthAnswer);
+    }
 }

@@ -7,13 +7,45 @@
         INSERT INTO truth (questioner, question, timeStamp)
         VALUES (#{questioner}, #{question}, #{timeStamp})
     </insert>
+
+    <update id="updateTruthHistory">
+        INSERT INTO truth_history (qq, id, history)
+        VALUES (#{qq}, #{id}, #{history,typeHandler=com.rainchain.jasmine.mybatis.TruthHistoryListTypeHandler})
+        ON DUPLICATE KEY UPDATE history = #{history,typeHandler=com.rainchain.jasmine.mybatis.TruthHistoryListTypeHandler}
+    </update>
+
+    <update id="updateTruthAnswered">
+        INSERT INTO truth_answered (qq, answered)
+        VALUES (#{qq}, #{answered,typeHandler=com.baomidou.mybatisplus.extension.handlers.FastjsonTypeHandler})
+        ON DUPLICATE KEY UPDATE answered = #{answered,typeHandler=com.baomidou.mybatisplus.extension.handlers.FastjsonTypeHandler}
+    </update>
+
     <select id="getTruth" resultType="com.rainchain.jasmine.entity.Truth">
         SELECT *
         FROM truth
     </select>
-    <select id="getAnsweredTruth" resultType="java.lang.String">
-        SELECT answered
+
+    <resultMap id="getAnsweredTruthResultMap" type="com.rainchain.jasmine.entity.TruthAnswered">
+        <id property="qq" column="qq"/>
+        <result property="answered" column="answered" jdbcType="VARCHAR" javaType="java.util.List"
+                typeHandler="com.baomidou.mybatisplus.extension.handlers.FastjsonTypeHandler"/>
+    </resultMap>
+    <select id="getAnsweredTruth" resultMap="getAnsweredTruthResultMap">
+        SELECT *
         FROM truth_answered
         WHERE qq = #{qq}
+    </select>
+
+    <resultMap id="answeredHistoryResult" type="com.rainchain.jasmine.entity.TruthHistory">
+        <result property="qq" jdbcType="VARCHAR" column="qq"/>
+        <result property="id" jdbcType="INTEGER" column="id"/>
+        <result property="history" jdbcType="VARCHAR" javaType="java.util.List" column="question"
+                typeHandler="com.rainchain.jasmine.mybatis.TruthHistoryListTypeHandler"/>
+    </resultMap>
+    <select id="getAnsweredHistory" resultMap="answeredHistoryResult">
+        SELECT *
+        FROM truth_history
+        WHERE qq = #{qq}
+          AND id = #{id}
     </select>
 </mapper>

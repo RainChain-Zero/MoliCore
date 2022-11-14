@@ -3,15 +3,21 @@ package com.rainchain.jasmine.entity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.extension.handlers.FastjsonTypeHandler;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @TableName truth_answered
  */
 @TableName(value = "truth_answered")
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class TruthAnswered implements Serializable {
     /**
      * 回答者的qq
@@ -20,10 +26,10 @@ public class TruthAnswered implements Serializable {
     private String qq;
 
     /**
-     * 已回答的问题id，id用左右两个英文括号包裹
+     * 已回答的问题id的List的json
      */
-    @TableField(value = "answered")
-    private String answered;
+    @TableField(value = "answered", typeHandler = FastjsonTypeHandler.class)
+    private List<Integer> answered;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

@@ -3,15 +3,22 @@ package com.rainchain.jasmine.entity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.rainchain.jasmine.component.TruthHistoryObj;
+import com.rainchain.jasmine.mybatis.TruthHistoryListTypeHandler;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @TableName truth_history
  */
 @TableName(value = "truth_history")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class TruthHistory implements Serializable {
     /**
      * 回答者qq
@@ -28,8 +35,8 @@ public class TruthHistory implements Serializable {
     /**
      * 回答历史的序列化json
      */
-    @TableField(value = "history")
-    private String history;
+    @TableField(value = "history", typeHandler = TruthHistoryListTypeHandler.class)
+    private List<TruthHistoryObj> history;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

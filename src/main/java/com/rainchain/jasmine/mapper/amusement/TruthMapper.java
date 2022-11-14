@@ -1,6 +1,8 @@
 package com.rainchain.jasmine.mapper.amusement;
 
 import com.rainchain.jasmine.entity.Truth;
+import com.rainchain.jasmine.entity.TruthAnswered;
+import com.rainchain.jasmine.entity.TruthHistory;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -14,7 +16,13 @@ import java.util.List;
 public interface TruthMapper {
     List<Truth> getTruth();
 
-    String getAnsweredTruth(String qq);
+    TruthAnswered getAnsweredTruth(String qq);
 
     void addTruth(Truth truth);
+
+    TruthHistory getAnsweredHistory(String qq, Integer id);
+
+    void updateTruthHistory(TruthHistory truthHistory);
+
+    void updateTruthAnswered(TruthAnswered truthAnswered);
 }
