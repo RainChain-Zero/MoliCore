@@ -1,12 +1,14 @@
 package com.rainchain.jasmine.controller;
 
 import com.rainchain.jasmine.component.TruthAnswer;
+import com.rainchain.jasmine.component.TruthHistoryObj;
 import com.rainchain.jasmine.entity.Truth;
 import com.rainchain.jasmine.service.TruthService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * @author RainChain-Zero
@@ -33,5 +35,10 @@ public class TruthController {
     @PostMapping("/answer")
     public void answerTruth(@Valid @RequestBody TruthAnswer truthAnswer) {
         truthService.answerTruth(truthAnswer);
+    }
+
+    @GetMapping("/getTruthHistory")
+    public List<TruthHistoryObj> getTruthHistory(@RequestParam("qq") String qq, @RequestParam("id") Integer id) {
+        return truthService.getTruthHistory(qq, id);
     }
 }

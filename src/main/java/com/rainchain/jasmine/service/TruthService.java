@@ -70,4 +70,8 @@ public class TruthService {
         truthMapper.updateTruthAnswered(answeredTruth);
     }
 
+    public List<TruthHistoryObj> getTruthHistory(String qq, Integer id) {
+        TruthHistory truthHistory = truthMapper.getAnsweredHistory(qq, id);
+        return null == truthHistory ? null : truthHistory.getHistory();
+    }
 }
