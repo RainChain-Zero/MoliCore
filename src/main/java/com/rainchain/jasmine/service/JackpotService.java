@@ -1,7 +1,7 @@
 package com.rainchain.jasmine.service;
 
 import com.rainchain.jasmine.entity.Jackpot;
-import com.rainchain.jasmine.mapper.JackpotMapper;
+import com.rainchain.jasmine.mapper.data.JackpotMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

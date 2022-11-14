@@ -1,0 +1,77 @@
+package com.rainchain.jasmine.entity;
+
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
+
+import java.io.Serializable;
+
+/**
+ * @TableName truth_history
+ */
+@TableName(value = "truth_history")
+@Data
+public class TruthHistory implements Serializable {
+    /**
+     * 回答者qq
+     */
+    @TableId(value = "qq")
+    private String qq;
+
+    /**
+     * 问题id
+     */
+    @TableId(value = "id")
+    private Integer id;
+
+    /**
+     * 回答历史的序列化json
+     */
+    @TableField(value = "history")
+    private String history;
+
+    @TableField(exist = false)
+    private static final long serialVersionUID = 1L;
+
+    @Override
+    public boolean equals(Object that) {
+        if (this == that) {
+            return true;
+        }
+        if (that == null) {
+            return false;
+        }
+        if (getClass() != that.getClass()) {
+            return false;
+        }
+        TruthHistory other = (TruthHistory) that;
+        return (this.getQq() == null ? other.getQq() == null : this.getQq().equals(other.getQq()))
+                && (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
+                && (this.getHistory() == null ? other.getHistory() == null : this.getHistory().equals(other.getHistory()));
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((getQq() == null) ? 0 : getQq().hashCode());
+        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
+        result = prime * result + ((getHistory() == null) ? 0 : getHistory().hashCode());
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", qq=").append(qq);
+        sb.append(", id=").append(id);
+        sb.append(", history=").append(history);
+        sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append("]");
+        return sb.toString();
+    }
+}

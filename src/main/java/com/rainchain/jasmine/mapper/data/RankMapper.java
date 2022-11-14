@@ -1,9 +1,8 @@
-package com.rainchain.jasmine.mapper;
+package com.rainchain.jasmine.mapper.data;
 
 import com.rainchain.jasmine.entity.Favorconf;
 import com.rainchain.jasmine.entity.Itemconf;
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -14,7 +13,6 @@ import java.util.List;
  */
 
 @Mapper
-@Repository
 public interface RankMapper {
     List<Favorconf> getFavorRankNow();
 

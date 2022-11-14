@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.rainchain.jasmine.mapper.RankMapper">
+<mapper namespace="com.rainchain.jasmine.mapper.data.RankMapper">
     <resultMap id="FavorResultMap" type="com.rainchain.jasmine.entity.Favorconf">
         <id property="qq" column="qq" jdbcType="VARCHAR"/>
         <result property="favor" column="favor" jdbcType="INTEGER"/>

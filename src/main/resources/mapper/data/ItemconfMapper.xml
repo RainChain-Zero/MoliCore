@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.rainchain.jasmine.mapper.DataMapper">
+<mapper namespace="com.rainchain.jasmine.mapper.data.DataMapper">
 
     <resultMap id="ItemResultMap" type="com.rainchain.jasmine.entity.Itemconf">
         <id property="qq" column="qq" jdbcType="VARCHAR"/>

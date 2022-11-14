@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rainchain.jasmine.mapper.amusement.TruthMapper">
+    <insert id="addTruth">
+        INSERT INTO truth (questioner, question, timeStamp)
+        VALUES (#{questioner}, #{question}, #{timeStamp})
+    </insert>
+    <select id="getTruth" resultType="com.rainchain.jasmine.entity.Truth">
+        SELECT *
+        FROM truth
+    </select>
+    <select id="getAnsweredTruth" resultType="java.lang.String">
+        SELECT answered
+        FROM truth_answered
+        WHERE qq = #{qq}
+    </select>
+</mapper>

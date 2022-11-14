@@ -22,13 +22,14 @@
             </option>
             <option name="needToStringHashcodeEquals" value="true" />
             <option name="needsComment" value="true" />
+            <option name="needsModel" value="true" />
             <option name="relativePackage" value="domain" />
             <option name="superClass" value="" />
             <option name="tableUIInfoList">
               <list>
                 <TableUIInfo>
-                  <option name="className" value="Adjustconf" />
-                  <option name="tableName" value="adjustconf" />
+                  <option name="className" value="TruthHistory" />
+                  <option name="tableName" value="truth_history" />
                 </TableUIInfo>
               </list>
             </option>

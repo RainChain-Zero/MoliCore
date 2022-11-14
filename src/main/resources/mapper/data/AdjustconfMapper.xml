@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.rainchain.jasmine.mapper.DataMapper">
+<mapper namespace="com.rainchain.jasmine.mapper.data.DataMapper">
     <select id="getAdjustConf" resultType="com.rainchain.jasmine.entity.Adjustconf">
         SELECT *
         FROM adjustconf
@@ -44,7 +44,7 @@
                 addAffinityDDL_Sushi=#{addAffinityDDL_Sushi},
             </if>
             <if test="addAffinityDDLFlag_Sushi!=null">
-                addAffinityDDLFlag_Sushi=#{addAffinityDDLFlag_Sushi}
+                addAffinityDDLFlag_Sushi=#{addAffinityDDLFlag_Sushi},
             </if>
             <if test="icecreamEaten!=null">
                 icecreamEaten=#{icecreamEaten}

@@ -1,8 +1,7 @@
-package com.rainchain.jasmine.mapper;
+package com.rainchain.jasmine.mapper.data;
 
 import com.rainchain.jasmine.entity.Jackpot;
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
 
@@ -12,7 +11,6 @@ import java.math.BigDecimal;
  * @date 2022/08/31 18:56
  */
 @Mapper
-@Repository
 public interface JackpotMapper {
     void updateJackpotAvg();
 

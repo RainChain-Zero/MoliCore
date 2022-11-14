@@ -2,7 +2,7 @@ package com.rainchain.jasmine.service;
 
 import com.rainchain.jasmine.entity.Favorconf;
 import com.rainchain.jasmine.entity.Itemconf;
-import com.rainchain.jasmine.mapper.RankMapper;
+import com.rainchain.jasmine.mapper.data.RankMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

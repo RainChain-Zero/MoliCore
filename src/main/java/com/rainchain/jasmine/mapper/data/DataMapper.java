@@ -1,11 +1,9 @@
-package com.rainchain.jasmine.mapper;
+package com.rainchain.jasmine.mapper.data;
 
 import com.rainchain.jasmine.entity.*;
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Repository;
 
 @Mapper
-@Repository
 public interface DataMapper {
     Favorconf getFavorconf(String qq);
 
