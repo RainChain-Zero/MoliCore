@@ -22,12 +22,12 @@ public class TruthController {
     @Resource
     private TruthService truthService;
 
-    @GetMapping("/get")
+    @GetMapping("/getTruth")
     public String getTruth(@RequestParam("qq") String qq) {
         return truthService.getTruth(qq);
     }
 
-    @PostMapping("/add")
+    @PostMapping("/addTruth")
     public void addTruth(@Valid @RequestBody Truth truth) {
         truthService.addTruth(truth);
     }
@@ -40,5 +40,10 @@ public class TruthController {
     @GetMapping("/getTruthHistory")
     public List<TruthHistoryObj> getTruthHistory(@RequestParam("qq") String qq, @RequestParam("id") Integer id) {
         return truthService.getTruthHistory(qq, id);
+    }
+
+    @PostMapping("/clearTruthAnswered")
+    public void clearTruthAnswered(@RequestParam("qq") String qq) {
+        truthService.clearTruthAnswered(qq);
     }
 }

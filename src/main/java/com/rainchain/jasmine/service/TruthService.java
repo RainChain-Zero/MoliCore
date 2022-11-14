@@ -74,4 +74,8 @@ public class TruthService {
         TruthHistory truthHistory = truthMapper.getAnsweredHistory(qq, id);
         return null == truthHistory ? null : truthHistory.getHistory();
     }
+
+    public void clearTruthAnswered(String qq) {
+        truthMapper.updateTruthAnswered(new TruthAnswered(qq, List.of()));
+    }
 }
