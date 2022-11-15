@@ -39,7 +39,7 @@
     <resultMap id="answeredHistoryResult" type="com.rainchain.jasmine.entity.TruthHistory">
         <result property="qq" jdbcType="VARCHAR" column="qq"/>
         <result property="id" jdbcType="INTEGER" column="id"/>
-        <result property="history" jdbcType="VARCHAR" javaType="java.util.List" column="question"
+        <result property="history" javaType="java.util.List" column="history"
                 typeHandler="com.rainchain.jasmine.mybatis.TruthHistoryListTypeHandler"/>
     </resultMap>
     <select id="getAnsweredHistory" resultMap="answeredHistoryResult">

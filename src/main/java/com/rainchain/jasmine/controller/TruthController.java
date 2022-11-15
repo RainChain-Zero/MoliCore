@@ -23,7 +23,7 @@ public class TruthController {
     private TruthService truthService;
 
     @GetMapping("/getTruth")
-    public String getTruth(@RequestParam("qq") String qq) {
+    public Truth getTruth(@RequestParam("qq") String qq) {
         return truthService.getTruth(qq);
     }
 
@@ -42,7 +42,7 @@ public class TruthController {
         return truthService.getTruthHistory(qq, id);
     }
 
-    @PostMapping("/clearTruthAnswered")
+    @DeleteMapping("/clearTruthAnswered")
     public void clearTruthAnswered(@RequestParam("qq") String qq) {
         truthService.clearTruthAnswered(qq);
     }

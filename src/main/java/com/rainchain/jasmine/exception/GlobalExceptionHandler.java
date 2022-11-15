@@ -60,11 +60,11 @@ public class GlobalExceptionHandler {
     }
 
     //空指针异常
-    @ExceptionHandler(value = NullPointerException.class)
-    public ResultData<String> nullPointerException(NullPointerException e) {
-        log.error("空指针异常:" + e.getMessage());
-        return ResultData.fail("请检验参数是否正确，检查无误后仍然错误请联系我们");
-    }
+//    @ExceptionHandler(value = NullPointerException.class)
+//    public ResultData<String> nullPointerException(NullPointerException e) {
+//        log.error("空指针异常:" + e.getMessage());
+//        return ResultData.fail("请检验参数是否正确，检查无误后仍然错误请联系我们");
+//    }
 
     //编码错误
     @ExceptionHandler(value = UnsupportedEncodingException.class)
@@ -92,10 +92,10 @@ public class GlobalExceptionHandler {
         return ResultData.fail("404 请求的路由不存在");
     }
 
-    @ExceptionHandler(value = Exception.class)
-    public ResultData<String> innerErrorException(Exception e) {
-        log.error(e.getMessage());
-        return ResultData.fail(e.getMessage());
-    }
+//    @ExceptionHandler(value = Exception.class)
+//    public ResultData<String> innerErrorException(Exception e) {
+//        log.error(e.getMessage());
+//        return ResultData.fail(e.getMessage());
+//    }
 
 }

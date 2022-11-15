@@ -21,7 +21,7 @@ public class TruthService {
     @Resource
     private TruthMapper truthMapper;
 
-    public String getTruth(String qq) {
+    public Truth getTruth(String qq) {
         //获取所有问题
         List<Truth> truthList = truthMapper.getTruth();
         //获取已经回答的问题
@@ -32,7 +32,7 @@ public class TruthService {
             truthList.removeIf(truth -> answeredTruthId.contains(truth.getId()));
         }
         //随机获取一个问题
-        return truthList.get((int) (Math.random() * truthList.size())).getQuestion();
+        return truthList.get((int) (Math.random() * truthList.size()));
     }
 
     public void addTruth(Truth truth) {
