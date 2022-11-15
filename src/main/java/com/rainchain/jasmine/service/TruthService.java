@@ -32,7 +32,7 @@ public class TruthService {
             truthList.removeIf(truth -> answeredTruthId.contains(truth.getId()));
         }
         //随机获取一个问题
-        return truthList.get((int) (Math.random() * truthList.size()));
+        return truthList.size() == 0 ? null : truthList.get((int) (Math.random() * truthList.size()));
     }
 
     public void addTruth(Truth truth) {

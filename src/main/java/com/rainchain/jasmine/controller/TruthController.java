@@ -32,7 +32,7 @@ public class TruthController {
         truthService.addTruth(truth);
     }
 
-    @PostMapping("/answer")
+    @PostMapping("/answerTruth")
     public void answerTruth(@Valid @RequestBody TruthAnswer truthAnswer) {
         truthService.answerTruth(truthAnswer);
     }
