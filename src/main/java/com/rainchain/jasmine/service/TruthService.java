@@ -46,11 +46,11 @@ public class TruthService {
         if (null == truthHistory) {
             truthHistory = new TruthHistory(truthAnswer.getQq(), truthAnswer.getId(),
                     List.of(
-                            new TruthHistoryObj(truthAnswer.getAnswer(), System.currentTimeMillis())
+                            new TruthHistoryObj(truthAnswer.getAnswer(), System.currentTimeMillis() + 8 * 60 * 60 * 1000L)
                     ));
         } else {
             List<TruthHistoryObj> truthHistoryObjList = truthHistory.getHistory();
-            truthHistoryObjList.add(new TruthHistoryObj(truthAnswer.getAnswer(), System.currentTimeMillis()));
+            truthHistoryObjList.add(new TruthHistoryObj(truthAnswer.getAnswer(), System.currentTimeMillis() + 8 * 60 * 60 * 1000L));
             truthHistory.setHistory(truthHistoryObjList);
         }
         //将本题回答记录写入数据库
