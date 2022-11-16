@@ -46,4 +46,10 @@ public class TruthController {
     public void clearTruthAnswered(@RequestParam("qq") String qq) {
         truthService.clearTruthAnswered(qq);
     }
+
+    @GetMapping("/getHistoryList")
+    public List<Truth> getHistoryList(@RequestParam("qq") String qq) {
+        return truthService.getHistoryList(qq);
+    }
+
 }

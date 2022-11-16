@@ -25,4 +25,6 @@ public interface TruthMapper {
     void updateTruthHistory(TruthHistory truthHistory);
 
     void updateTruthAnswered(TruthAnswered truthAnswered);
+
+    List<Truth> getHistoryList(List<Integer> answeredTruthId);
 }

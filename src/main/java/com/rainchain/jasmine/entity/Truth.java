@@ -38,7 +38,7 @@ public class Truth implements Serializable {
      * 提出的时间戳
      */
     @TableField(value = "timeStamp")
-    private Long timeStamp = System.currentTimeMillis();
+    private Long timeStamp = System.currentTimeMillis() + 8 * 60 * 60 * 1000L;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

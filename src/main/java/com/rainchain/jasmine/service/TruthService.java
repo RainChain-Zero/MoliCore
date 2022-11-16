@@ -1,5 +1,7 @@
 package com.rainchain.jasmine.service;
 
+import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.util.StrUtil;
 import com.rainchain.jasmine.component.TruthAnswer;
 import com.rainchain.jasmine.component.TruthHistoryObj;
 import com.rainchain.jasmine.entity.Truth;
@@ -9,6 +11,7 @@ import com.rainchain.jasmine.mapper.amusement.TruthMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -40,6 +43,23 @@ public class TruthService {
     }
 
     public void answerTruth(TruthAnswer truthAnswer) {
+        //获取已经回答的问题id
+        TruthAnswered answeredTruth = truthMapper.getAnsweredTruth(truthAnswer.getQq());
+        //没有已经回答过的历史则创建
+        if (null == answeredTruth) {
+            answeredTruth = new TruthAnswered(truthAnswer.getQq(), List.of(truthAnswer.getId()));
+        } else {
+            List<Integer> answeredTruthId = answeredTruth.getAnswered();
+            answeredTruthId.add(truthAnswer.getId());
+            answeredTruth.setAnswered(answeredTruthId);
+        }
+        //更新已经回答过的问题id到数据库
+        truthMapper.updateTruthAnswered(answeredTruth);
+
+        //是否存在有效回答
+        if (StrUtil.isBlank(truthAnswer.getAnswer().replace("{{end}}", ""))) {
+            return;
+        }
         //获取回答问题历史
         TruthHistory truthHistory = truthMapper.getAnsweredHistory(truthAnswer.getQq(), truthAnswer.getId());
         //没有历史记录则创建
@@ -55,19 +75,6 @@ public class TruthService {
         }
         //将本题回答记录写入数据库
         truthMapper.updateTruthHistory(truthHistory);
-
-        //获取已经回答的问题id
-        TruthAnswered answeredTruth = truthMapper.getAnsweredTruth(truthAnswer.getQq());
-        //没有已经回答过的历史则创建
-        if (null == answeredTruth) {
-            answeredTruth = new TruthAnswered(truthAnswer.getQq(), List.of(truthAnswer.getId()));
-        } else {
-            List<Integer> answeredTruthId = answeredTruth.getAnswered();
-            answeredTruthId.add(truthAnswer.getId());
-            answeredTruth.setAnswered(answeredTruthId);
-        }
-        //更新已经回答过的问题id到数据库
-        truthMapper.updateTruthAnswered(answeredTruth);
     }
 
     public List<TruthHistoryObj> getTruthHistory(String qq, Integer id) {
@@ -77,5 +84,20 @@ public class TruthService {
 
     public void clearTruthAnswered(String qq) {
         truthMapper.updateTruthAnswered(new TruthAnswered(qq, List.of()));
+    }
+
+    public List<Truth> getHistoryList(String qq) {
+        TruthAnswered answeredTruth = truthMapper.getAnsweredTruth(qq);
+        if (null == answeredTruth) {
+            return null;
+        }
+        List<Integer> answeredTruthId = answeredTruth.getAnswered();
+        if (CollUtil.isEmpty(answeredTruthId)) {
+            return null;
+        }
+        List<Truth> res = truthMapper.getHistoryList(answeredTruthId);
+        //按照问题的id升序
+        res.sort(Comparator.comparing(Truth::getId));
+        return res;
     }
 }

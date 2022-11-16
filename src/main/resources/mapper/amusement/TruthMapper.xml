@@ -48,4 +48,12 @@
         WHERE qq = #{qq}
           AND id = #{id}
     </select>
+    <select id="getHistoryList" resultType="com.rainchain.jasmine.entity.Truth">
+        SELECT *
+        FROM truth
+        WHERE id IN
+        <foreach collection="answeredTruthId" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
 </mapper>
