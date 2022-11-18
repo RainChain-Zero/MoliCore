@@ -51,5 +51,4 @@ public class TruthController {
     public List<Truth> getHistoryList(@RequestParam("qq") String qq) {
         return truthService.getHistoryList(qq);
     }
-
 }

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rainchain.jasmine.mapper.amusement.BottleMapper">
+    <insert id="throwBottle">
+        INSERT INTO bottle(type, qq, nick, `group`, groupName, content, anonymous, timeStamp)
+        VALUES (#{type}, #{qq}, #{nick}, #{group}, #{groupName}, #{content}, #{anonymous},
+                #{timeStamp})
+    </insert>
+    <insert id="comment">
+        INSERT INTO bottle_reply (bottleId, qq, nick, content, anonymous, timeStamp)
+        VALUES (#{bottleId}, #{qq}, #{nick}, #{content}, #{anonymous}, #{timeStamp})
+    </insert>
+    <insert id="thumbs">
+        INSERT INTO bottle_thumbs(qq, id, thumbsUp)
+        VALUES (#{qq}, #{id}, #{thumbsUp})
+        ON DUPLICATE KEY UPDATE thumbsUp = #{thumbsUp}
+    </insert>
+    <select id="pickBottle" resultType="com.rainchain.jasmine.entity.Bottle">
+        SET @offset = (SELECT FLOOR(RAND() * COUNT(*))
+                       FROM bottle);
+        SELECT *
+        FROM bottle
+        LIMIT @offset, 1;
+    </select>
+    <select id="getReply" resultType="com.rainchain.jasmine.entity.BottleReply">
+        SELECT *
+        FROM bottle_reply
+        WHERE bottleId = #{bottleId};
+    </select>
+    <select id="getThumbs" resultType="java.lang.String">
+        SELECT CONCAT((SELECT COUNT(*) FROM bottle_thumbs WHERE id = #{id} AND thumbsUp = 1),
+                      ',',
+                      (SELECT COUNT(*) FROM bottle_thumbs WHERE id = #{id} AND thumbsUp = 0))
+    </select>
+    <select id="pickBottleById" resultType="com.rainchain.jasmine.entity.Bottle">
+        SELECT *
+        FROM bottle
+        WHERE id = #{id}
+        LIMIT 1;
+    </select>
+    <select id="searchBottleByQq" resultType="com.rainchain.jasmine.component.SearchBottleResult">
+        SELECT id, content
+        FROM bottle
+        WHERE qq = #{qq}
+    </select>
+    <select id="searchBottleByReply" resultType="com.rainchain.jasmine.component.SearchBottleResult">
+        SELECT id, content
+        FROM bottle
+        WHERE id IN (SELECT bottleId FROM bottle_reply WHERE qq = #{qq})
+    </select>
+</mapper>
