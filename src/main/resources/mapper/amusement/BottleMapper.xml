@@ -13,9 +13,13 @@
         VALUES (#{bottleId}, #{qq}, #{nick}, #{content}, #{anonymous}, #{timeStamp})
     </insert>
     <insert id="thumbs">
-        INSERT INTO bottle_thumbs(qq, id, thumbsUp)
-        VALUES (#{qq}, #{id}, #{thumbsUp})
+        INSERT INTO bottle_thumbs(qq, id, thumbsUp, timeStamp)
+        VALUES (#{qq}, #{id}, #{thumbsUp}, #{timeStamp})
         ON DUPLICATE KEY UPDATE thumbsUp = #{thumbsUp}
+    </insert>
+    <insert id="collect">
+        REPLACE INTO bottle_collect(qq, id, timeStamp)
+        VALUES (#{qq}, #{id}, #{timeStamp})
     </insert>
     <select id="pickBottle" resultType="com.rainchain.jasmine.entity.Bottle">
         SET @offset = (SELECT FLOOR(RAND() * COUNT(*))
@@ -49,5 +53,10 @@
         SELECT id, content
         FROM bottle
         WHERE id IN (SELECT bottleId FROM bottle_reply WHERE qq = #{qq})
+    </select>
+    <select id="searchBottleByCollect" resultType="com.rainchain.jasmine.component.SearchBottleResult">
+        SELECT id, content
+        FROM bottle
+        WHERE id IN (SELECT id FROM bottle_collect WHERE qq = #{qq})
     </select>
 </mapper>

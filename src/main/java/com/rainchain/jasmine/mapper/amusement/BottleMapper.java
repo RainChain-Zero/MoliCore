@@ -2,6 +2,7 @@ package com.rainchain.jasmine.mapper.amusement;
 
 import com.rainchain.jasmine.component.SearchBottleResult;
 import com.rainchain.jasmine.entity.Bottle;
+import com.rainchain.jasmine.entity.BottleFavorites;
 import com.rainchain.jasmine.entity.BottleReply;
 import com.rainchain.jasmine.entity.BottleThumbs;
 import org.apache.ibatis.annotations.Mapper;
@@ -32,4 +33,8 @@ public interface BottleMapper {
     List<SearchBottleResult> searchBottleByQq(String qq);
 
     List<SearchBottleResult> searchBottleByReply(String qq);
+
+    void collect(BottleFavorites bottleFavorites);
+
+    List<SearchBottleResult> searchBottleByCollect(String qq);
 }

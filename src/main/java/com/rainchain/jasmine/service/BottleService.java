@@ -2,6 +2,7 @@ package com.rainchain.jasmine.service;
 
 import com.rainchain.jasmine.component.SearchBottleResult;
 import com.rainchain.jasmine.entity.Bottle;
+import com.rainchain.jasmine.entity.BottleFavorites;
 import com.rainchain.jasmine.entity.BottleReply;
 import com.rainchain.jasmine.entity.BottleThumbs;
 import com.rainchain.jasmine.mapper.amusement.BottleMapper;
@@ -50,5 +51,13 @@ public class BottleService {
 
     public List<SearchBottleResult> searchBottleByReply(String qq) {
         return bottleMapper.searchBottleByReply(qq);
+    }
+
+    public void collect(BottleFavorites bottleFavorites) {
+        bottleMapper.collect(bottleFavorites);
+    }
+
+    public List<SearchBottleResult> searchBottleByCollect(String qq) {
+        return bottleMapper.searchBottleByCollect(qq);
     }
 }

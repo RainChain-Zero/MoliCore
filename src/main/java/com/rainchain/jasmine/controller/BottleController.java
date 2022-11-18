@@ -2,6 +2,7 @@ package com.rainchain.jasmine.controller;
 
 import com.rainchain.jasmine.component.SearchBottleResult;
 import com.rainchain.jasmine.entity.Bottle;
+import com.rainchain.jasmine.entity.BottleFavorites;
 import com.rainchain.jasmine.entity.BottleReply;
 import com.rainchain.jasmine.entity.BottleThumbs;
 import com.rainchain.jasmine.service.BottleService;
@@ -66,5 +67,16 @@ public class BottleController {
         return bottleService.searchBottleByReply(qq);
     }
 
+    //查找自己收藏的瓶子
+    @GetMapping("/searchBottleByCollect")
+    public List<SearchBottleResult> searchBottleByCollect(@RequestParam("qq") String qq) {
+        return bottleService.searchBottleByCollect(qq);
+    }
+
+    //收藏瓶子
+    @PostMapping("/collect")
+    public void collect(@Valid @RequestBody BottleFavorites bottleFavorites) {
+        bottleService.collect(bottleFavorites);
+    }
 
 }

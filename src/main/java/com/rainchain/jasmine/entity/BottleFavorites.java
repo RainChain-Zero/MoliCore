@@ -10,30 +10,24 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
- * @TableName bottle_thumbs
+ * @TableName bottle_favorites
  */
-@TableName(value = "bottle_thumbs")
+@TableName(value = "bottle_favorites")
 @Data
-public class BottleThumbs implements Serializable {
+public class BottleFavorites implements Serializable {
     /**
-     * 操作人QQ号
+     * 收藏人qq号
      */
     @TableId(value = "qq")
-    @NotBlank(message = "操作人QQ号不能为空")
+    @NotBlank(message = "收藏人qq号不能为空")
     private String qq;
 
     /**
-     * 漂流瓶id
+     * 收藏的瓶子id
      */
     @TableId(value = "id")
-    @NotNull(message = "漂流瓶id不能为空")
+    @NotNull(message = "收藏的瓶子id不能为空")
     private Integer id;
-
-    /**
-     * 0：踩；1：赞
-     */
-    @TableField(value = "thumbsUp")
-    private boolean thumbsUp;
 
     /**
      * 时间戳
@@ -43,5 +37,6 @@ public class BottleThumbs implements Serializable {
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
+
 
 }
