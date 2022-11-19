@@ -66,6 +66,7 @@
         SELECT id, content
         FROM bottle
         WHERE qq = #{qq}
+          AND type = 1
     </select>
     <select id="searchBottleByReply" resultType="com.rainchain.jasmine.component.SearchBottleResult">
         SELECT id, content
