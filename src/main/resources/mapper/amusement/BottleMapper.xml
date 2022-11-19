@@ -21,9 +21,35 @@
         REPLACE INTO bottle_collect(qq, id, timeStamp)
         VALUES (#{qq}, #{id}, #{timeStamp})
     </insert>
+    <delete id="deleteBottle">
+        DELETE bottle,bottle_reply,bottle_thumbs,bottle_favorites
+        FROM bottle LEFT JOIN bottle_reply ON bottle.id = bottle_reply.bottleId
+        LEFT JOIN bottle_thumbs ON bottle.id = bottle_thumbs.id
+        LEFT JOIN bottle_favorites ON bottle.id = bottle_favorites.id
+        <where>
+            bottle.id = #{id} AND (
+            bottle.qq = #{qq} OR #{qq} in
+            <foreach collection="admin" item="admin" open="(" close=")" separator=",">
+                #{admin}
+            </foreach>
+            )
+        </where>
+    </delete>
+    <delete id="deleteComment">
+        DELETE bottle_reply
+        FROM bottle_reply
+        <where>
+            bottle_reply.bottleId = #{id} AND (
+            bottle_reply.qq = #{qq} OR #{qq} in
+            <foreach collection="admin" item="admin" open="(" close=")" separator=",">
+                #{admin}
+            </foreach>
+            )
+        </where>
+    </delete>
     <select id="pickBottle" resultType="com.rainchain.jasmine.entity.Bottle">
-        SET @offset = (SELECT FLOOR(RAND() * COUNT(*))
-                       FROM bottle);
+        SET @offset := (SELECT FLOOR(RAND() * COUNT(*))
+                        FROM bottle);
         SELECT *
         FROM bottle
         LIMIT @offset, 1;
@@ -58,5 +84,15 @@
         SELECT id, content
         FROM bottle
         WHERE id IN (SELECT id FROM bottle_collect WHERE qq = #{qq})
+    </select>
+    <select id="searchByKeywords" resultType="com.rainchain.jasmine.component.SearchBottleResult">
+        SELECT id, content
+        FROM bottle
+        <where>
+            <foreach collection="keywords" item="keyword" separator="AND">
+                content LIKE CONCAT('%', #{keyword}, '%')
+            </foreach>
+        </where>
+        LIMIT 100;
     </select>
 </mapper>

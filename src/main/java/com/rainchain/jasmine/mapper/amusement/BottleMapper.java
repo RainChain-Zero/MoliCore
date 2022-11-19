@@ -37,4 +37,10 @@ public interface BottleMapper {
     void collect(BottleFavorites bottleFavorites);
 
     List<SearchBottleResult> searchBottleByCollect(String qq);
+
+    List<SearchBottleResult> searchByKeywords(List<String> keywords);
+
+    Integer deleteBottle(List<String> admin, String qq, int id);
+
+    Integer deleteComment(List<String> admin, String qq, int id);
 }

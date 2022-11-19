@@ -6,12 +6,14 @@ import com.rainchain.jasmine.entity.BottleFavorites;
 import com.rainchain.jasmine.entity.BottleReply;
 import com.rainchain.jasmine.entity.BottleThumbs;
 import com.rainchain.jasmine.service.BottleService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author RainChain-Zero
@@ -23,7 +25,10 @@ import java.util.List;
 public class BottleController {
     @Resource
     private BottleService bottleService;
+    @Value("adminQQ")
+    private List<String> admin;
 
+    //! 会把点赞和点踩的数量一并返回
     @GetMapping("/pick")
     public Bottle pickBottle(@RequestParam(value = "id", required = false) Integer id) {
         return bottleService.pickBottle(id);
@@ -34,7 +39,13 @@ public class BottleController {
         bottleService.throwBottle(bottle);
     }
 
-    @GetMapping("/getReply")
+    //删除瓶子
+    @DeleteMapping("/deleteBottle")
+    private Integer deleteBottle(@RequestBody Map<String, String> map) {
+        return bottleService.deleteBottle(admin, map.get("qq"), Integer.parseInt(map.get("id")));
+    }
+
+    @GetMapping("/getComment")
     public List<BottleReply> getReply(@RequestParam("id") Integer id) {
         return bottleService.getReply(id);
     }
@@ -42,6 +53,12 @@ public class BottleController {
     @PostMapping("/comment")
     public void comment(@Valid @RequestBody BottleReply bottleReply) {
         bottleService.comment(bottleReply);
+    }
+
+    //删除评论
+    @DeleteMapping("/deleteComment")
+    public Integer deleteComment(@RequestBody Map<String, String> map) {
+        return bottleService.deleteComment(admin, map.get("qq"), Integer.parseInt(map.get("id")));
     }
 
     //返回"赞数,踩数"
@@ -79,4 +96,8 @@ public class BottleController {
         bottleService.collect(bottleFavorites);
     }
 
+    @GetMapping("/searchByKeywords")
+    public List<SearchBottleResult> searchByKeywords(@RequestParam("keywords") List<String> keywords) {
+        return bottleService.searchByKeywords(keywords);
+    }
 }

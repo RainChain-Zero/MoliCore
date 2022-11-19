@@ -2,16 +2,24 @@ spring:
   datasource:
     one:
       username: root
-      password: MilkCoco412
-      url: jdbc:mysql://localhost:24444/jasmine_users?useUnicode=true&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true&allowMultiQueries=true&serverTimezone=Asia/Shanghai
+      password: admin
+      url: jdbc:mysql://localhost:3306/jasmine_users?useUnicode=true&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true&allowMultiQueries=true&serverTimezone=Asia/Shanghai
       driver-class-name: com.mysql.cj.jdbc.Driver
     two:
       username: root
-      password: MilkCoco412
-      url: jdbc:mysql://localhost:24444/jasmine_amusement?useUnicode=true&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true&allowMultiQueries=true&serverTimezone=Asia/Shanghai
+      password: admin
+      url: jdbc:mysql://localhost:3306/jasmine_amusement?useUnicode=true&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true&allowMultiQueries=true&serverTimezone=Asia/Shanghai
       driver-class-name: com.mysql.cj.jdbc.Driver
 
 server:
   port: 45445
   tomcat:
     uri-encoding: UTF-8
+
+adminQQ:
+  - 3032902237
+  - 2677409596
+  - 2595928998
+  - 839968342
+  - 751766424
+  - 1298754454

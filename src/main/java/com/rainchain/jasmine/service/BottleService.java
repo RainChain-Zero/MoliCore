@@ -60,4 +60,16 @@ public class BottleService {
     public List<SearchBottleResult> searchBottleByCollect(String qq) {
         return bottleMapper.searchBottleByCollect(qq);
     }
+
+    public List<SearchBottleResult> searchByKeywords(List<String> keywords) {
+        return bottleMapper.searchByKeywords(keywords);
+    }
+
+    public Integer deleteBottle(List<String> admin, String qq, int id) {
+        return bottleMapper.deleteBottle(admin, qq, id);
+    }
+
+    public Integer deleteComment(List<String> admin, String qq, int id) {
+        return bottleMapper.deleteComment(admin, qq, id);
+    }
 }

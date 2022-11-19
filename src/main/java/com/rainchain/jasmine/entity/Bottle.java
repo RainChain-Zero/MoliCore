@@ -59,6 +59,10 @@ public class Bottle implements Serializable {
     @NotBlank(message = "漂流瓶的内容不能为空")
     private String content;
 
+    private Integer good;
+
+    private Integer bad;
+
     /**
      * 0：实名；1：匿名
      */
