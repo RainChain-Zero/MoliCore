@@ -22,7 +22,7 @@ public class BottleService {
     private BottleMapper bottleMapper;
 
     public Bottle pickBottle(Integer id) {
-        return null == id ? bottleMapper.pickBottle() : bottleMapper.pickBottleById(id);
+        return null == id ? bottleMapper.pickBottle(bottleMapper.getOffset()) : bottleMapper.pickBottleById(id);
     }
 
     public List<BottleReply> getReply(Integer id) {

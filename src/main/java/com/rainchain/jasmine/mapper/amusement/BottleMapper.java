@@ -16,7 +16,9 @@ import java.util.List;
  */
 @Mapper
 public interface BottleMapper {
-    Bottle pickBottle();
+    Bottle pickBottle(int offset);
+
+    int getOffset();
 
     Bottle pickBottleById(Integer id);
 

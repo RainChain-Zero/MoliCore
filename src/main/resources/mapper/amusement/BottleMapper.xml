@@ -48,11 +48,9 @@
         </where>
     </delete>
     <select id="pickBottle" resultType="com.rainchain.jasmine.entity.Bottle">
-        SET @offset := (SELECT FLOOR(RAND() * COUNT(*))
-                        FROM bottle);
         SELECT *
         FROM bottle
-        LIMIT @offset, 1;
+        LIMIT ${offset}, 1;
     </select>
     <select id="getReply" resultType="com.rainchain.jasmine.entity.BottleReply">
         SELECT *
@@ -94,5 +92,9 @@
             </foreach>
         </where>
         LIMIT 100;
+    </select>
+    <select id="getOffset" resultType="java.lang.Integer">
+        SELECT FLOOR(RAND() * COUNT(*))
+        FROM bottle
     </select>
 </mapper>
