@@ -39,7 +39,7 @@ public class BottleController {
         bottleService.throwBottle(bottle);
     }
 
-    //删除瓶子
+    //删除瓶子（瓶子主人和管理员可以删除）
     @DeleteMapping("/deleteBottle")
     private Integer deleteBottle(@RequestBody Map<String, String> map) {
         return bottleService.deleteBottle(admin, map.get("qq"), Integer.parseInt(map.get("id")));
@@ -55,7 +55,7 @@ public class BottleController {
         bottleService.comment(bottleReply);
     }
 
-    //删除评论
+    //删除评论（只能删除自己的评论）
     @DeleteMapping("/deleteComment")
     public Integer deleteComment(@RequestBody Map<String, String> map) {
         return bottleService.deleteComment(admin, map.get("qq"), Integer.parseInt(map.get("id")));
