@@ -76,7 +76,7 @@
     <select id="searchBottleByCollect" resultType="com.rainchain.jasmine.component.SearchBottleResult">
         SELECT id, content
         FROM bottle
-        WHERE id IN (SELECT id FROM bottle_collect WHERE qq = #{qq})
+        WHERE id IN (SELECT id FROM bottle_favorites WHERE qq = #{qq})
     </select>
     <select id="searchByKeywords" resultType="com.rainchain.jasmine.component.SearchBottleResult">
         SELECT id, content

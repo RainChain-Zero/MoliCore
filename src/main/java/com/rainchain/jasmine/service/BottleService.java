@@ -5,6 +5,7 @@ import com.rainchain.jasmine.entity.Bottle;
 import com.rainchain.jasmine.entity.BottleFavorites;
 import com.rainchain.jasmine.entity.BottleReply;
 import com.rainchain.jasmine.entity.BottleThumbs;
+import com.rainchain.jasmine.exception.OperationFailException;
 import com.rainchain.jasmine.mapper.amusement.BottleMapper;
 import org.springframework.stereotype.Service;
 
@@ -34,10 +35,16 @@ public class BottleService {
     }
 
     public void comment(BottleReply bottleReply) {
+        if (null == bottleMapper.pickBottleById(bottleReply.getBottleId())) {
+            throw new OperationFailException("诶？该漂流瓶不存在哦？");
+        }
         bottleMapper.comment(bottleReply);
     }
 
     public void thumbs(BottleThumbs bottleThumbs) {
+        if (null == bottleMapper.pickBottleById(bottleThumbs.getId())) {
+            throw new OperationFailException("诶？该漂流瓶不存在哦？");
+        }
         bottleMapper.thumbs(bottleThumbs);
     }
 
@@ -54,6 +61,9 @@ public class BottleService {
     }
 
     public void collect(BottleFavorites bottleFavorites) {
+        if (null == bottleMapper.pickBottleById(bottleFavorites.getId())) {
+            throw new OperationFailException("诶？该漂流瓶不存在哦？");
+        }
         bottleMapper.collect(bottleFavorites);
     }
 
