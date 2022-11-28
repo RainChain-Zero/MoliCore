@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rainchain.jasmine.mapper.amusement.BottleMapper">
-    <insert id="throwBottle">
+    <insert id="throwBottle" keyProperty="id" useGeneratedKeys="true">
         INSERT INTO bottle(type, qq, nick, `group`, groupName, content, anonymous, timeStamp)
         VALUES (#{type}, #{qq}, #{nick}, #{group}, #{groupName}, #{content}, #{anonymous},
                 #{timeStamp})

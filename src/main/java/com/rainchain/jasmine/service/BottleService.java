@@ -30,8 +30,9 @@ public class BottleService {
         return bottleMapper.getReply(id);
     }
 
-    public void throwBottle(Bottle bottle) {
+    public int throwBottle(Bottle bottle) {
         bottleMapper.throwBottle(bottle);
+        return bottle.getId();
     }
 
     public void comment(BottleReply bottleReply) {

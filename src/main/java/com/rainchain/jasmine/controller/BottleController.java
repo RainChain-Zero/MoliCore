@@ -35,8 +35,8 @@ public class BottleController {
     }
 
     @PostMapping("/throw")
-    public void throwBottle(@Valid @RequestBody Bottle bottle) {
-        bottleService.throwBottle(bottle);
+    public int throwBottle(@Valid @RequestBody Bottle bottle) {
+        return bottleService.throwBottle(bottle);
     }
 
     //删除瓶子（瓶子主人和管理员可以删除）
@@ -97,7 +97,7 @@ public class BottleController {
     }
 
     @GetMapping("/searchByKeywords")
-    public List<SearchBottleResult> searchByKeywords(@RequestParam("keywords") List<String> keywords) {
+    public List<SearchBottleResult> searchByKeywords(@RequestParam("key") List<String> keywords) {
         return bottleService.searchByKeywords(keywords);
     }
 }
