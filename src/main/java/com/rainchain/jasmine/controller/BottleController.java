@@ -28,7 +28,6 @@ public class BottleController {
     @Value("adminQQ")
     private List<String> admin;
 
-    //! 会把点赞和点踩的数量一并返回
     @GetMapping("/pick")
     public Bottle pickBottle(@RequestParam(value = "id", required = false) Integer id) {
         return bottleService.pickBottle(id);
@@ -94,6 +93,11 @@ public class BottleController {
     @PostMapping("/collect")
     public void collect(@Valid @RequestBody BottleFavorites bottleFavorites) {
         bottleService.collect(bottleFavorites);
+    }
+
+    @DeleteMapping("/deleteCollect")
+    public Integer deleteCollect(@RequestBody Map<String, String> map) {
+        return bottleService.deleteCollect(map.get("qq"), Integer.parseInt(map.get("id")));
     }
 
     @GetMapping("/searchByKeywords")

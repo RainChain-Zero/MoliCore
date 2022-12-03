@@ -39,7 +39,17 @@
         DELETE bottle_reply
         FROM bottle_reply
         WHERE bottle_reply.bottleId = #{id}
-          AND bottle_reply.qq = #{qq}
+        AND (bottle_reply.qq = #{qq} OR #{qq} in
+        <foreach collection="admin" item="admin" open="(" close=")" separator=",">
+            #{admin}
+        </foreach>
+        )
+    </delete>
+    <delete id="deleteCollect">
+        DELETE bottle_favorites
+        FROM bottle_favorites
+        WHERE bottle_favorites.id = #{id}
+          AND bottle_favorites.qq = #{qq}
     </delete>
     <select id="pickBottle" resultType="com.rainchain.jasmine.entity.Bottle">
         SELECT *

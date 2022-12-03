@@ -83,4 +83,8 @@ public class BottleService {
     public Integer deleteComment(List<String> admin, String qq, int id) {
         return bottleMapper.deleteComment(admin, qq, id);
     }
+
+    public Integer deleteCollect(String qq, int id) {
+        return bottleMapper.deleteCollect(qq, id);
+    }
 }

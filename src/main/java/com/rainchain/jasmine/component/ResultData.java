@@ -13,7 +13,7 @@ public class ResultData<T> {
     @JSONField
     private boolean succ;
     @JSONField(ordinal = 1, name = "errMsg")
-    private String err_msg;
+    private String errMsg;
     @JSONField(ordinal = 2)
     private T data;
 
@@ -21,7 +21,7 @@ public class ResultData<T> {
     public static <T> ResultData<T> success(T data) {
         ResultData<T> resultData = new ResultData<>();
         resultData.setSucc(true);
-        resultData.setErr_msg(null);
+        resultData.setErrMsg(null);
         resultData.setData(data);
         return resultData;
     }
@@ -30,7 +30,7 @@ public class ResultData<T> {
     public static <T> ResultData<T> fail(String errMsg) {
         ResultData<T> resultData = new ResultData<>();
         resultData.setSucc(false);
-        resultData.setErr_msg(errMsg);
+        resultData.setErrMsg(errMsg);
         return resultData;
     }
 
