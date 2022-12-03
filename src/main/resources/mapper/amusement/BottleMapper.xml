@@ -51,6 +51,11 @@
         WHERE bottle_favorites.id = #{id}
           AND bottle_favorites.qq = #{qq}
     </delete>
+    <delete id="deleteBottleOnly">
+        DELETE bottle
+        FROM bottle
+        WHERE bottle.id = #{id}
+    </delete>
     <select id="pickBottle" resultType="com.rainchain.jasmine.entity.Bottle">
         SELECT *
         FROM bottle
@@ -100,6 +105,10 @@
     </select>
     <select id="getOffset" resultType="java.lang.Integer">
         SELECT FLOOR(RAND() * COUNT(*))
+        FROM bottle
+    </select>
+    <select id="getNum" resultType="java.lang.Integer">
+        SELECT COUNT(*)
         FROM bottle
     </select>
 </mapper>

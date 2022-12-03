@@ -23,7 +23,12 @@ public class BottleService {
     private BottleMapper bottleMapper;
 
     public Bottle pickBottle(Integer id) {
-        return null == id ? bottleMapper.pickBottle(bottleMapper.getOffset()) : bottleMapper.pickBottleById(id);
+        Bottle bottle = null == id ? bottleMapper.pickBottle(bottleMapper.getOffset()) : bottleMapper.pickBottleById(id);
+        //捡到尸体直接删除
+        if (bottle.getType() == 0) {
+            bottleMapper.deleteBottleOnly(bottle.getId());
+        }
+        return bottle;
     }
 
     public List<BottleReply> getReply(Integer id) {
@@ -86,5 +91,11 @@ public class BottleService {
 
     public Integer deleteCollect(String qq, int id) {
         return bottleMapper.deleteCollect(qq, id);
+    }
+
+
+    public int jumpSea(Bottle bottle) {
+        bottleMapper.throwBottle(bottle);
+        return bottleMapper.getNum();
     }
 }

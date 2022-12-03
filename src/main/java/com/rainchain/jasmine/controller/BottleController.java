@@ -6,7 +6,6 @@ import com.rainchain.jasmine.entity.BottleFavorites;
 import com.rainchain.jasmine.entity.BottleReply;
 import com.rainchain.jasmine.entity.BottleThumbs;
 import com.rainchain.jasmine.service.BottleService;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -25,12 +24,16 @@ import java.util.Map;
 public class BottleController {
     @Resource
     private BottleService bottleService;
-    @Value("adminQQ")
-    private List<String> admin;
+    private final List<String> admin = List.of("3032902237", "2677409596", "2595928998", "839968342", "751766424", "1298754454");
 
     @GetMapping("/pick")
     public Bottle pickBottle(@RequestParam(value = "id", required = false) Integer id) {
         return bottleService.pickBottle(id);
+    }
+
+    @PostMapping("/jumpSea")
+    public int jumpSea(@RequestBody @Valid Bottle bottle) {
+        return bottleService.jumpSea(bottle);
     }
 
     @PostMapping("/throw")

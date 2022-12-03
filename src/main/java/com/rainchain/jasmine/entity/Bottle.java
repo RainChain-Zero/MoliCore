@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Null;
 import java.io.Serializable;
 
@@ -56,7 +55,6 @@ public class Bottle implements Serializable {
      * 漂流瓶的内容
      */
     @TableField(value = "content")
-    @NotBlank(message = "漂流瓶的内容不能为空")
     private String content;
 
     private Integer good;
