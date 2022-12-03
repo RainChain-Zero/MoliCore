@@ -39,11 +39,7 @@
         DELETE bottle_reply
         FROM bottle_reply
         WHERE bottle_reply.bottleId = #{id}
-        AND (bottle_reply.qq = #{qq} OR #{qq} in
-        <foreach collection="admin" item="admin" open="(" close=")" separator=",">
-            #{admin}
-        </foreach>
-        )
+          AND bottle_reply.qq = #{qq}
     </delete>
     <delete id="deleteCollect">
         DELETE bottle_favorites
@@ -55,6 +51,15 @@
         DELETE bottle
         FROM bottle
         WHERE bottle.id = #{id}
+    </delete>
+    <delete id="clearBottle">
+        DELETE bottle,bottle_reply,bottle_thumbs,bottle_favorites
+        FROM bottle
+                 LEFT JOIN bottle_reply ON bottle.id = bottle_reply.bottleId
+                 LEFT JOIN bottle_thumbs ON bottle.id = bottle_thumbs.id
+                 LEFT JOIN bottle_favorites ON bottle.id = bottle_favorites.id
+        WHERE (SELECT COUNT(*) FROM bottle_thumbs WHERE id = bottle.id AND thumbsUp = 0) - 2 -
+              (SELECT COUNT(*) FROM bottle_thumbs WHERE id = bottle.id AND thumbsUp = 1) * 2 > 0
     </delete>
     <select id="pickBottle" resultType="com.rainchain.jasmine.entity.Bottle">
         SELECT *

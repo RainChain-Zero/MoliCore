@@ -60,7 +60,7 @@ public class BottleController {
     //删除评论（只能删除自己的评论）
     @DeleteMapping("/deleteComment")
     public Integer deleteComment(@RequestBody Map<String, String> map) {
-        return bottleService.deleteComment(admin, map.get("qq"), Integer.parseInt(map.get("id")));
+        return bottleService.deleteComment(map.get("qq"), Integer.parseInt(map.get("id")));
     }
 
     //返回"赞数,踩数"

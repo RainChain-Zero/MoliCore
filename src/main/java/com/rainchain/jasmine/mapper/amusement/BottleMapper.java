@@ -46,9 +46,11 @@ public interface BottleMapper {
 
     void deleteBottleOnly(int id);
 
-    Integer deleteComment(List<String> admin, String qq, int id);
+    Integer deleteComment(String qq, int id);
 
     Integer deleteCollect(String qq, int id);
 
     int getNum();
+
+    int clearBottle();
 }
