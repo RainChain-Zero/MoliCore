@@ -159,110 +159,12 @@ public class Storyconf implements Serializable {
     @TableField(value = "isSpecial1Read")
     private Integer isSpecial1Read;
 
+    /**
+     * 圣诞特典是否阅读完毕
+     */
+    @TableField(value = "isSpecial2Read")
+    private Integer isSpecial2Read;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
-
-    @Override
-    public boolean equals(Object that) {
-        if (this == that) {
-            return true;
-        }
-        if (that == null) {
-            return false;
-        }
-        if (getClass() != that.getClass()) {
-            return false;
-        }
-        Storyconf other = (Storyconf) that;
-        return (this.getQq() == null ? other.getQq() == null : this.getQq().equals(other.getQq()))
-                && (this.getMainIndex() == null ? other.getMainIndex() == null : this.getMainIndex().equals(other.getMainIndex()))
-                && (this.getOption() == null ? other.getOption() == null : this.getOption().equals(other.getOption()))
-                && (this.getChoice() == null ? other.getChoice() == null : this.getChoice().equals(other.getChoice()))
-                && (this.getChoiceIndex() == null ? other.getChoiceIndex() == null : this.getChoiceIndex().equals(other.getChoiceIndex()))
-                && (this.getStoryReadNow() == null ? other.getStoryReadNow() == null : this.getStoryReadNow().equals(other.getStoryReadNow()))
-                && (this.getSpecialReadNow() == null ? other.getSpecialReadNow() == null : this.getSpecialReadNow().equals(other.getSpecialReadNow()))
-                && (this.getNextOption() == null ? other.getNextOption() == null : this.getNextOption().equals(other.getNextOption()))
-                && (this.getEntryCheckStory() == null ? other.getEntryCheckStory() == null : this.getEntryCheckStory().equals(other.getEntryCheckStory()))
-                && (this.getStoryUnlockedNotice() == null ? other.getStoryUnlockedNotice() == null : this.getStoryUnlockedNotice().equals(other.getStoryUnlockedNotice()))
-                && (this.getSpecialUnlockedNotice() == null ? other.getSpecialUnlockedNotice() == null : this.getSpecialUnlockedNotice().equals(other.getSpecialUnlockedNotice()))
-                && (this.getChoiceSelected0() == null ? other.getChoiceSelected0() == null : this.getChoiceSelected0().equals(other.getChoiceSelected0()))
-                && (this.getIsStory0Read() == null ? other.getIsStory0Read() == null : this.getIsStory0Read().equals(other.getIsStory0Read()))
-                && (this.getIsSpecial0Read() == null ? other.getIsSpecial0Read() == null : this.getIsSpecial0Read().equals(other.getIsSpecial0Read()))
-                && (this.getSpecial0Option3() == null ? other.getSpecial0Option3() == null : this.getSpecial0Option3().equals(other.getSpecial0Option3()))
-                && (this.getSpecial0Flag() == null ? other.getSpecial0Flag() == null : this.getSpecial0Flag().equals(other.getSpecial0Flag()))
-                && (this.getIsMessageSent() == null ? other.getIsMessageSent() == null : this.getIsMessageSent().equals(other.getIsMessageSent()))
-                && (this.getIsStory1Unlocked() == null ? other.getIsStory1Unlocked() == null : this.getIsStory1Unlocked().equals(other.getIsStory1Unlocked()))
-                && (this.getActionRoundLeft() == null ? other.getActionRoundLeft() == null : this.getActionRoundLeft().equals(other.getActionRoundLeft()))
-                && (this.getIsShopUnlocked() == null ? other.getIsShopUnlocked() == null : this.getIsShopUnlocked().equals(other.getIsShopUnlocked()))
-                && (this.getIsStory1Option1Choice3() == null ? other.getIsStory1Option1Choice3() == null : this.getIsStory1Option1Choice3().equals(other.getIsStory1Option1Choice3()))
-                && (this.getStory2Choice() == null ? other.getStory2Choice() == null : this.getStory2Choice().equals(other.getStory2Choice()))
-                && (this.getIsStory3Read() == null ? other.getIsStory3Read() == null : this.getIsStory3Read().equals(other.getIsStory3Read()))
-                && (this.getIsSpecial1Read() == null ? other.getIsSpecial1Read() == null : this.getIsSpecial1Read().equals(other.getIsSpecial1Read()));
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((getQq() == null) ? 0 : getQq().hashCode());
-        result = prime * result + ((getMainIndex() == null) ? 0 : getMainIndex().hashCode());
-        result = prime * result + ((getOption() == null) ? 0 : getOption().hashCode());
-        result = prime * result + ((getChoice() == null) ? 0 : getChoice().hashCode());
-        result = prime * result + ((getChoiceIndex() == null) ? 0 : getChoiceIndex().hashCode());
-        result = prime * result + ((getStoryReadNow() == null) ? 0 : getStoryReadNow().hashCode());
-        result = prime * result + ((getSpecialReadNow() == null) ? 0 : getSpecialReadNow().hashCode());
-        result = prime * result + ((getNextOption() == null) ? 0 : getNextOption().hashCode());
-        result = prime * result + ((getEntryCheckStory() == null) ? 0 : getEntryCheckStory().hashCode());
-        result = prime * result + ((getStoryUnlockedNotice() == null) ? 0 : getStoryUnlockedNotice().hashCode());
-        result = prime * result + ((getSpecialUnlockedNotice() == null) ? 0 : getSpecialUnlockedNotice().hashCode());
-        result = prime * result + ((getChoiceSelected0() == null) ? 0 : getChoiceSelected0().hashCode());
-        result = prime * result + ((getIsStory0Read() == null) ? 0 : getIsStory0Read().hashCode());
-        result = prime * result + ((getIsSpecial0Read() == null) ? 0 : getIsSpecial0Read().hashCode());
-        result = prime * result + ((getSpecial0Option3() == null) ? 0 : getSpecial0Option3().hashCode());
-        result = prime * result + ((getSpecial0Flag() == null) ? 0 : getSpecial0Flag().hashCode());
-        result = prime * result + ((getIsMessageSent() == null) ? 0 : getIsMessageSent().hashCode());
-        result = prime * result + ((getIsStory1Unlocked() == null) ? 0 : getIsStory1Unlocked().hashCode());
-        result = prime * result + ((getActionRoundLeft() == null) ? 0 : getActionRoundLeft().hashCode());
-        result = prime * result + ((getIsShopUnlocked() == null) ? 0 : getIsShopUnlocked().hashCode());
-        result = prime * result + ((getIsStory1Option1Choice3() == null) ? 0 : getIsStory1Option1Choice3().hashCode());
-        result = prime * result + ((getStory2Choice() == null) ? 0 : getStory2Choice().hashCode());
-        result = prime * result + ((getIsStory3Read() == null) ? 0 : getIsStory3Read().hashCode());
-        result = prime * result + ((getIsSpecial1Read() == null) ? 0 : getIsSpecial1Read().hashCode());
-        return result;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", qq=").append(qq);
-        sb.append(", mainIndex=").append(mainIndex);
-        sb.append(", option=").append(option);
-        sb.append(", choice=").append(choice);
-        sb.append(", choiceIndex=").append(choiceIndex);
-        sb.append(", storyReadNow=").append(storyReadNow);
-        sb.append(", specialReadNow=").append(specialReadNow);
-        sb.append(", nextOption=").append(nextOption);
-        sb.append(", entryCheckStory=").append(entryCheckStory);
-        sb.append(", storyUnlockedNotice=").append(storyUnlockedNotice);
-        sb.append(", specialUnlockedNotice=").append(specialUnlockedNotice);
-        sb.append(", choiceSelected0=").append(choiceSelected0);
-        sb.append(", isStory0Read=").append(isStory0Read);
-        sb.append(", isSpecial0Read=").append(isSpecial0Read);
-        sb.append(", special0Option3=").append(special0Option3);
-        sb.append(", special0Flag=").append(special0Flag);
-        sb.append(", isMessageSent=").append(isMessageSent);
-        sb.append(", isStory1Unlocked=").append(isStory1Unlocked);
-        sb.append(", actionRoundLeft=").append(actionRoundLeft);
-        sb.append(", isShopUnlocked=").append(isShopUnlocked);
-        sb.append(", isStory1Option1Choice3=").append(isStory1Option1Choice3);
-        sb.append(", story2Choice=").append(story2Choice);
-        sb.append(", isStory3Read=").append(isStory3Read);
-        sb.append(", isSpecial1Read=").append(isSpecial1Read);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
-    }
 }
