@@ -171,6 +171,9 @@ public class Storyconf implements Serializable {
     @TableField(value = "isStory4Read")
     private Integer isStory4Read;
 
+    @TableField(value = "isSpecial4Read")
+    private Integer isSpecial4Read;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 }
