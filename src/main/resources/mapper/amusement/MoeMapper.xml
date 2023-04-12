@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rainchain.jasmine.mapper.amusement.MoeMapper">
+
+    <resultMap id="BaseResultMap" type="com.rainchain.jasmine.entity.OmegaPixivArtwork">
+        <id property="pid" column="pid" jdbcType="BIGINT"/>
+        <result property="uid" column="uid" jdbcType="BIGINT"/>
+        <result property="title" column="title" jdbcType="VARCHAR"/>
+        <result property="uname" column="uname" jdbcType="VARCHAR"/>
+        <result property="classified" column="classified" jdbcType="INTEGER"/>
+        <result property="nsfw" column="nsfw" jdbcType="INTEGER"/>
+        <result property="width" column="width" jdbcType="INTEGER"/>
+        <result property="height" column="height" jdbcType="INTEGER"/>
+        <result property="tags" column="tags" jdbcType="VARCHAR"/>
+        <result property="url" column="url" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="randomMoe" resultType="com.rainchain.jasmine.entity.OmegaPixivArtwork">
+        SELECT *
+        FROM omega_pixiv_artwork
+        <where>
+            <if test="tags != null and tags.size > 0">
+                <foreach collection="tags" item="tag" separator=" AND ">
+                    tags LIKE CONCAT('%', #{tag}, '%')
+                </foreach>
+            </if>
+        </where>
+        ORDER BY RAND()
+        LIMIT #{num}
+    </select>
+</mapper>

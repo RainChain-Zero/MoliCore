@@ -45,6 +45,9 @@ public class Itemconf implements Serializable {
     @TableField(value = "永恒之戒", exist = true)
     private Integer 永恒之戒;
 
+    @TableField(value = "八音盒", exist = true)
+    private Integer 八音盒;
+
     /**
      *
      */
@@ -149,6 +152,7 @@ public class Itemconf implements Serializable {
                 && (this.get梦的开始() == null ? other.get梦的开始() == null : this.get梦的开始().equals(other.get梦的开始()))
                 && (this.get未言的期待() == null ? other.get未言的期待() == null : this.get未言的期待().equals(other.get未言的期待()))
                 && (this.get永恒之戒() == null ? other.get永恒之戒() == null : this.get永恒之戒().equals(other.get永恒之戒()))
+                && (this.get八音盒() == null ? other.get八音盒() == null : this.get八音盒().equals(other.get八音盒()))
                 && (this.get雪花糖() == null ? other.get雪花糖() == null : this.get雪花糖().equals(other.get雪花糖()))
                 && (this.get袋装曲奇() == null ? other.get袋装曲奇() == null : this.get袋装曲奇().equals(other.get袋装曲奇()))
                 && (this.get快乐水() == null ? other.get快乐水() == null : this.get快乐水().equals(other.get快乐水()))
@@ -174,6 +178,7 @@ public class Itemconf implements Serializable {
         result = prime * result + ((get梦的开始() == null) ? 0 : get梦的开始().hashCode());
         result = prime * result + ((get未言的期待() == null) ? 0 : get未言的期待().hashCode());
         result = prime * result + ((get永恒之戒() == null) ? 0 : get永恒之戒().hashCode());
+        result = prime * result + ((get八音盒() == null) ? 0 : get八音盒().hashCode());
         result = prime * result + ((get雪花糖() == null) ? 0 : get雪花糖().hashCode());
         result = prime * result + ((get袋装曲奇() == null) ? 0 : get袋装曲奇().hashCode());
         result = prime * result + ((get快乐水() == null) ? 0 : get快乐水().hashCode());
@@ -202,6 +207,7 @@ public class Itemconf implements Serializable {
         sb.append(", 梦的开始=").append(梦的开始);
         sb.append(", 未言的期待=").append(未言的期待);
         sb.append(", 永恒之戒=").append(永恒之戒);
+        sb.append(", 八音盒=").append(八音盒);
         sb.append(", 雪花糖=").append(雪花糖);
         sb.append(", 袋装曲奇=").append(袋装曲奇);
         sb.append(", 快乐水=").append(快乐水);

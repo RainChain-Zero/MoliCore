@@ -30,6 +30,8 @@
         <result property="isStory3Read" column="isStory3Read" jdbcType="INTEGER"/>
         <result property="isSpecial1Read" column="isSpecial1Read" jdbcType="INTEGER"/>
         <result property="isSpecial2Read" column="isSpecial2Read" jdbcType="INTEGER"/>
+        <result property="isSpecial3Read" column="isSpecial3Read" jdbcType="INTEGER"/>
+        <result property="isStory4Read" column="isStory4Read" jdbcType="INTEGER"/>
     </resultMap>
 
     <select id="getStoryConf" resultMap="StoryResultMap">
@@ -42,13 +44,13 @@
         INSERT INTO storyconf (qq, mainIndex, `option`, choice, choiceIndex, storyReadNow, specialReadNow, nextOption,
         entryCheckStory, storyUnlockedNotice, specialUnlockedNotice, choiceSelected0, isStory0Read, isSpecial0Read,
         special0Option3, special0Flag, isMessageSent, isStory1Unlocked, actionRoundLeft, isShopUnlocked,
-        isStory1Option1Choice3, story2Choice, isStory3Read, isSpecial1Read,isSpecial2Read)
+        isStory1Option1Choice3, story2Choice, isStory3Read, isSpecial1Read,isSpecial2Read,isSpecial3Read,isStory4Read)
         VALUES (#{qq}, #{mainIndex}, #{option}, #{choice}, #{choiceIndex}, #{storyReadNow}, #{specialReadNow},
         #{nextOption},
         #{entryCheckStory}, #{storyUnlockedNotice}, #{specialUnlockedNotice}, #{choiceSelected0},
         #{isStory0Read}, #{isSpecial0Read}, #{special0Option3}, #{special0Flag}, #{isMessageSent},
         #{isStory1Unlocked}, #{actionRoundLeft}, #{isShopUnlocked}, #{isStory1Option1Choice3}, #{story2Choice},
-        #{isStory3Read}, #{isSpecial1Read},#{isSpecial2Read})
+        #{isStory3Read}, #{isSpecial1Read},#{isSpecial2Read},#{isSpecial3Read},#{isStory4Read})
         ON DUPLICATE KEY UPDATE
         <trim suffixOverrides=",">
             <if test="mainIndex!=null">
@@ -122,6 +124,12 @@
             </if>
             <if test="isSpecial2Read!=null">
                 isSpecial2Read=#{isSpecial2Read}
+            </if>
+            <if test="isSpecial3Read!=null">
+                isSpecial3Read=#{isSpecial3Read}
+            </if>
+            <if test="isStory4Read!=null">
+                isStory4Read=#{isStory4Read}
             </if>
         </trim>
 

@@ -165,6 +165,12 @@ public class Storyconf implements Serializable {
     @TableField(value = "isSpecial2Read")
     private Integer isSpecial2Read;
 
+    @TableField(value = "isSpecial3Read")
+    private Integer isSpecial3Read;
+
+    @TableField(value = "isStory4Read")
+    private Integer isStory4Read;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 }
