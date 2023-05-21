@@ -12,6 +12,7 @@
         <result property="永恒之戒" column="永恒之戒" jdbcType="INTEGER"/>
         <result property="八音盒" column="八音盒" jdbcType="INTEGER"/>
         <result property="星幕投影灯" column="星幕投影灯" jdbcType="INTEGER"/>
+        <result property="野餐篮" column="野餐篮" jdbcType="INTEGER"/>
         <result property="雪花糖" column="雪花糖" jdbcType="INTEGER"/>
         <result property="袋装曲奇" column="袋装曲奇" jdbcType="INTEGER"/>
         <result property="快乐水" column="快乐水" jdbcType="INTEGER"/>
@@ -35,11 +36,12 @@
     </select>
 
     <insert id="setItemConf">
-        INSERT INTO itemconf (qq, fl, 梦的开始, 未言的期待, 永恒之戒,八音盒, 星幕投影灯,雪花糖, 袋装曲奇, 快乐水, pocky, 彩虹糖, 推理小说, 牛奶, 冰激凌, 可颂, 巧克力,
+        INSERT INTO itemconf (qq, fl, 梦的开始, 未言的期待, 永恒之戒,八音盒, 星幕投影灯,野餐篮,雪花糖, 袋装曲奇, 快乐水, pocky, 彩虹糖, 推理小说, 牛奶, 冰激凌, 可颂,
+        巧克力,
         发簪, 寿司,
         薯片,
         定制reply)
-        VALUES ( #{qq}, #{fl}, #{梦的开始}, #{未言的期待}, #{永恒之戒},#{八音盒},#{星幕投影灯}, #{雪花糖}, #{袋装曲奇}, #{快乐水}, #{pocky},
+        VALUES ( #{qq}, #{fl}, #{梦的开始}, #{未言的期待}, #{永恒之戒},#{八音盒},#{星幕投影灯},#{野餐篮}, #{雪花糖}, #{袋装曲奇}, #{快乐水}, #{pocky},
         #{彩虹糖}, #{推理小说}, #{牛奶}, #{冰激凌}, #{可颂}, #{巧克力}, #{发簪}, #{寿司}, #{薯片}, #{定制reply})
         ON DUPLICATE KEY
         UPDATE
@@ -61,6 +63,9 @@
             </if>
             <if test="星幕投影灯!=null">
                 星幕投影灯=#{星幕投影灯},
+            </if>
+            <if test="野餐篮!=null">
+                野餐篮=#{野餐篮},
             </if>
             <if test="雪花糖!=null">
                 雪花糖=#{雪花糖},

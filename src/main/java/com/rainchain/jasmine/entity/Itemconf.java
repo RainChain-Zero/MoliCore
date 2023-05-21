@@ -51,6 +51,9 @@ public class Itemconf implements Serializable {
     @TableField(value = "星幕投影灯", exist = true)
     private Integer 星幕投影灯;
 
+    @TableField(value = "野餐篮", exist = true)
+    private Integer 野餐篮;
+
     /**
      *
      */
