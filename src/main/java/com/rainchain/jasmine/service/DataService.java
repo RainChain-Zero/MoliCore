@@ -54,4 +54,20 @@ public class DataService {
     public void setTradeConf(Tradeconf tradeConf) {
         dataMapper.setTradeConf(tradeConf);
     }
+
+    public Moodconf getMoodConf(String qq) {
+        return dataMapper.getMoodConf(qq);
+    }
+
+    public void setMoodConf(Moodconf moodConf) {
+        dataMapper.setMoodConf(moodConf);
+    }
+
+    public Missionconf getMissionConf(String qq) {
+        return dataMapper.getMissionConf(qq);
+    }
+
+    public void setMissionConf(Missionconf missionConf) {
+        dataMapper.setMissionConf(missionConf);
+    }
 }

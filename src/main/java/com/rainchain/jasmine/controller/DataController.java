@@ -66,4 +66,24 @@ public class DataController {
     public void setTradeConf(@RequestBody @Validated Tradeconf tradeConf) {
         dataService.setTradeConf(tradeConf);
     }
+
+    @GetMapping("/getMoodConf/{qq}")
+    public Moodconf getMoodConf(@PathVariable("qq") @Length(min = 5, max = 10, message = "QQ号非法！") String qq) {
+        return dataService.getMoodConf(qq);
+    }
+
+    @PostMapping("/setMoodConf")
+    public void setMoodConf(@RequestBody @Validated Moodconf moodConf) {
+        dataService.setMoodConf(moodConf);
+    }
+
+    @GetMapping("/getMissionConf/{qq}")
+    public Missionconf getMissionConf(@PathVariable("qq") @Length(min = 5, max = 10, message = "QQ号非法！") String qq) {
+        return dataService.getMissionConf(qq);
+    }
+
+    @PostMapping("/setMissionConf")
+    public void setMissionConf(@RequestBody @Validated Missionconf missionConf) {
+        dataService.setMissionConf(missionConf);
+    }
 }

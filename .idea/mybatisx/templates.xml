@@ -69,8 +69,12 @@
             <option name="tableUIInfoList">
               <list>
                 <TableUIInfo>
-                  <option name="className" value="OmegaPixivArtwork" />
-                  <option name="tableName" value="omega_pixiv_artwork" />
+                  <option name="className" value="Moodconf" />
+                  <option name="tableName" value="moodconf" />
+                </TableUIInfo>
+                <TableUIInfo>
+                  <option name="className" value="Missionconf" />
+                  <option name="tableName" value="missionconf" />
                 </TableUIInfo>
               </list>
             </option>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rainchain.jasmine.mapper.data.DataMapper">
+
+    <insert id="setMissionConf">
+        INSERT INTO missionconf (qq, curiosity_gift)
+        VALUES (#{qq}, #{curiosity_gift})
+        ON DUPLICATE KEY UPDATE curiosity_gift = #{curiosity_gift}
+    </insert>
+
+    <select id="getMissionConf" resultType="com.rainchain.jasmine.entity.Missionconf">
+        SELECT *
+        FROM missionconf
+        WHERE qq = #{qq}
+    </select>
+</mapper>

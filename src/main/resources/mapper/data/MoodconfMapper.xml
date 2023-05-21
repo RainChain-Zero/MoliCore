@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rainchain.jasmine.mapper.data.DataMapper">
+
+    <insert id="setMoodConf" parameterType="com.rainchain.jasmine.entity.Moodconf">
+        INSERT INTO moodconf (qq, mood, special_mood, float_value, coefficient)
+        VALUES (#{qq}, #{mood}, #{special_mood}, #{float_value}, #{coefficient})
+        ON DUPLICATE KEY UPDATE
+        <trim suffixOverrides=",">
+            <if test="mood != null">mood = #{mood},</if>
+            <if test="special_mood != null">special_mood = #{special_mood},</if>
+            <if test="float_value != null">float_value = #{float_value},</if>
+            <if test="coefficient != null">coefficient = #{coefficient}</if>
+        </trim>
+    </insert>
+
+    <select id="getMoodConf" resultType="com.rainchain.jasmine.entity.Moodconf">
+        SELECT *
+        FROM moodconf
+        WHERE qq = #{qq}
+    </select>
+</mapper>

@@ -2,8 +2,8 @@ spring:
   datasource:
     one:
       username: root
-      password: MilkCoco412
-      url: jdbc:mysql://localhost:24444/jasmine_users?useUnicode=true&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true&allowMultiQueries=true&serverTimezone=Asia/Shanghai
+      password: admin
+      url: jdbc:mysql://localhost:3306/jasmine_users?useUnicode=true&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true&allowMultiQueries=true&serverTimezone=Asia/Shanghai
       driver-class-name: com.mysql.cj.jdbc.Driver
     two:
       username: root
@@ -15,3 +15,5 @@ server:
   port: 45445
   tomcat:
     uri-encoding: UTF-8
+    max-threads: 400
+    max-connections: 8192

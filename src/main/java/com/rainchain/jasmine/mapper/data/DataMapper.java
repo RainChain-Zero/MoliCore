@@ -25,4 +25,11 @@ public interface DataMapper {
 
     void setTradeConf(Tradeconf tradeConf);
 
+    Moodconf getMoodConf(String qq);
+
+    void setMoodConf(Moodconf moodConf);
+
+    Missionconf getMissionConf(String qq);
+
+    void setMissionConf(Missionconf missionConf);
 }
