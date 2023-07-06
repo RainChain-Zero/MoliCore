@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Arclight" />
         <module name="sast" />
+        <module name="jasmine" />
         <module name="MoliCore" />
       </profile>
     </annotationProcessing>
@@ -17,6 +18,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Arclight" options="-parameters" />
       <module name="MoliCore" options="-parameters" />
+      <module name="jasmine" options="-parameters" />
       <module name="sast" options="-parameters" />
     </option>
   </component>
