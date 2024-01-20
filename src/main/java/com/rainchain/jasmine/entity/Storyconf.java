@@ -183,6 +183,12 @@ public class Storyconf implements Serializable {
     @TableField(value = "isSpecial7Read")
     private Integer isSpecial7Read;
 
+    @TableField(value = "isSpecial8Read")
+    private Integer isSpecial8Read;
+
+    @TableField(value = "isSpecial9Read")
+    private Integer isSpecial9Read;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 }

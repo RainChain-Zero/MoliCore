@@ -36,6 +36,7 @@
         <result property="isSpcial5Read" column="isSpcial5Read" jdbcType="INTEGER"/>
         <result property="isSpecial6Read" column="isSpecial6Read" jdbcType="INTEGER"/>
         <result property="isSpecial7Read" column="isSpecial7Read" jdbcType="INTEGER"/>
+        <result property="isSpecial8Read" column="isSpecial8Read" jdbcType="INTEGER"/>
     </resultMap>
 
     <select id="getStoryConf" resultMap="StoryResultMap">
@@ -49,14 +50,14 @@
         entryCheckStory, storyUnlockedNotice, specialUnlockedNotice, choiceSelected0, isStory0Read, isSpecial0Read,
         special0Option3, special0Flag, isMessageSent, isStory1Unlocked, actionRoundLeft, isShopUnlocked,
         isStory1Option1Choice3, story2Choice, isStory3Read,
-        isSpecial1Read,isSpecial2Read,isSpecial3Read,isStory4Read,isSpecial4Read,isSpecial5Read,isSpecial6Read,isSpecial7Read)
+        isSpecial1Read,isSpecial2Read,isSpecial3Read,isStory4Read,isSpecial4Read,isSpecial5Read,isSpecial6Read,isSpecial7Read,isSpecial8Read)
         VALUES (#{qq}, #{mainIndex}, #{option}, #{choice}, #{choiceIndex}, #{storyReadNow}, #{specialReadNow},
         #{nextOption},
         #{entryCheckStory}, #{storyUnlockedNotice}, #{specialUnlockedNotice}, #{choiceSelected0},
         #{isStory0Read}, #{isSpecial0Read}, #{special0Option3}, #{special0Flag}, #{isMessageSent},
         #{isStory1Unlocked}, #{actionRoundLeft}, #{isShopUnlocked}, #{isStory1Option1Choice3}, #{story2Choice},
         #{isStory3Read},
-        #{isSpecial1Read},#{isSpecial2Read},#{isSpecial3Read},#{isStory4Read},#{isSpecial4Read},#{isSpecial5Read},#{isSpecial6Read},#{isSpecial7Read})
+        #{isSpecial1Read},#{isSpecial2Read},#{isSpecial3Read},#{isStory4Read},#{isSpecial4Read},#{isSpecial5Read},#{isSpecial6Read},#{isSpecial7Read},#{isSpecial8Read})
         ON DUPLICATE KEY UPDATE
         <trim suffixOverrides=",">
             <if test="mainIndex!=null">
@@ -148,6 +149,12 @@
             </if>
             <if test="isSpecial7Read!=null">
                 isSpecial7Read=#{isSpecial7Read}
+            </if>
+            <if test="isSpecial8Read!=null">
+                isSpecial8Read=#{isSpecial8Read}
+            </if>
+            <if test="isSpecial9Read!=null">
+                isSpecial1Read=#{isSpecial9Read}
             </if>
         </trim>
 
