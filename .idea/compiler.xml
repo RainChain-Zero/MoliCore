@@ -10,7 +10,6 @@
         <module name="Arclight" />
         <module name="sast" />
         <module name="jasmine" />
-        <module name="MoliCore" />
       </profile>
     </annotationProcessing>
   </component>

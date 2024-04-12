@@ -37,8 +37,8 @@ public class Truth implements Serializable {
     /**
      * 提出的时间戳
      */
-    @TableField(value = "timeStamp")
-    private Long timeStamp = System.currentTimeMillis() + 8 * 60 * 60 * 1000L;
+    @TableField(value = "accepted")
+    private boolean accepted = false;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
@@ -58,7 +58,7 @@ public class Truth implements Serializable {
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
                 && (this.getQuestioner() == null ? other.getQuestioner() == null : this.getQuestioner().equals(other.getQuestioner()))
                 && (this.getQuestion() == null ? other.getQuestion() == null : this.getQuestion().equals(other.getQuestion()))
-                && (this.getTimeStamp() == null ? other.getTimeStamp() == null : this.getTimeStamp().equals(other.getTimeStamp()));
+                && this.isAccepted();
     }
 
     @Override
@@ -68,7 +68,7 @@ public class Truth implements Serializable {
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
         result = prime * result + ((getQuestioner() == null) ? 0 : getQuestioner().hashCode());
         result = prime * result + ((getQuestion() == null) ? 0 : getQuestion().hashCode());
-        result = prime * result + ((getTimeStamp() == null) ? 0 : getTimeStamp().hashCode());
+        result = prime * result + (isAccepted() ? 0 : String.valueOf(isAccepted()).hashCode());
         return result;
     }
 
@@ -81,7 +81,7 @@ public class Truth implements Serializable {
         sb.append(", id=").append(id);
         sb.append(", questioner=").append(questioner);
         sb.append(", question=").append(question);
-        sb.append(", timeStamp=").append(timeStamp);
+        sb.append(", accepted=").append(accepted);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

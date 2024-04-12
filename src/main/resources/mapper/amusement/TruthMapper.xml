@@ -4,8 +4,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rainchain.jasmine.mapper.amusement.TruthMapper">
     <insert id="addTruth">
-        INSERT INTO truth (questioner, question, timeStamp)
-        VALUES (#{questioner}, #{question}, #{timeStamp})
+        INSERT INTO truth (questioner, question, accepted)
+        VALUES (#{questioner}, #{question}, #{accepted})
     </insert>
 
     <update id="updateTruthHistory">
@@ -23,6 +23,7 @@
     <select id="getTruth" resultType="com.rainchain.jasmine.entity.Truth">
         SELECT *
         FROM truth
+        WHERE accepted = 1
     </select>
 
     <resultMap id="getAnsweredTruthResultMap" type="com.rainchain.jasmine.entity.TruthAnswered">
