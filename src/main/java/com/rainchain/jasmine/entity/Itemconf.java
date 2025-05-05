@@ -40,6 +40,9 @@ public class Itemconf implements Serializable {
     @TableField(value = "野餐篮", exist = true)
     private Integer 野餐篮;
 
+    @TableField(value = "折叠伞", exist = true)
+    private Integer 折叠伞;
+
     @TableField(value = "风车发饰", exist = true)
     private Integer 风车发饰;
 

@@ -39,6 +39,7 @@
         <result property="isSpecial8Read" column="isSpecial8Read" jdbcType="INTEGER"/>
         <result property="isSpecial9Read" column="isSpecial9Read" jdbcType="INTEGER"/>
         <result property="isSpecial10Read" column="isSpecial10Read" jdbcType="INTEGER"/>
+        <result property="isSpecial11Read" column="isSpecial11Read" jdbcType="INTEGER"/>
     </resultMap>
 
     <select id="getStoryConf" resultMap="StoryResultMap">
@@ -53,7 +54,7 @@
         special0Option3, special0Flag, isMessageSent, isStory1Unlocked, actionRoundLeft, isShopUnlocked,
         isStory1Option1Choice3, story2Choice, isStory3Read,
         isSpecial1Read,isSpecial2Read,isSpecial3Read,isStory4Read,isSpecial4Read,isSpecial5Read,isSpecial6Read,isSpecial7Read,isSpecial8Read,
-        isSpecial9Read,isSpecial10Read)
+        isSpecial9Read,isSpecial10Read,isSpecial11Read)
         VALUES (#{qq}, #{mainIndex}, #{option}, #{choice}, #{choiceIndex}, #{storyReadNow}, #{specialReadNow},
         #{nextOption},
         #{entryCheckStory}, #{storyUnlockedNotice}, #{specialUnlockedNotice}, #{choiceSelected0},
@@ -61,7 +62,7 @@
         #{isStory1Unlocked}, #{actionRoundLeft}, #{isShopUnlocked}, #{isStory1Option1Choice3}, #{story2Choice},
         #{isStory3Read},
         #{isSpecial1Read},#{isSpecial2Read},#{isSpecial3Read},#{isStory4Read},#{isSpecial4Read},#{isSpecial5Read},#{isSpecial6Read},#{isSpecial7Read},#{isSpecial8Read},
-        #{isSpecial9Read},#{isSpecial10Read})
+        #{isSpecial9Read},#{isSpecial10Read},#{isSpecial11Read})
         ON DUPLICATE KEY UPDATE
         <trim suffixOverrides=",">
             <if test="mainIndex!=null">
@@ -162,6 +163,9 @@
             </if>
             <if test="isSpecial10Read!=null">
                 isSpecial10Read=#{isSpecial10Read}
+            </if>
+            <if test="isSpecial11Read!=null">
+                isSpecial11Read=#{isSpecial11Read}
             </if>
         </trim>
 

@@ -10,11 +10,11 @@
     </parent>
     <groupId>com.rainchain</groupId>
     <artifactId>jasmine</artifactId>
-    <version>1.4.0-Beta</version>
+    <version>1.4.1-Beta</version>
     <name>MoliCore</name>
     <description>茉莉后端核心</description>
     <properties>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
     </properties>
     <dependencies>
         <dependency>
