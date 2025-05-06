@@ -6,26 +6,32 @@
     <insert id="throwBottle" keyProperty="id" useGeneratedKeys="true">
         INSERT INTO bottle(type, qq, nick, `group`, groupName, content, anonymous, timeStamp)
         VALUES (#{type}, #{qq}, #{nick}, #{group}, #{groupName}, #{content}, #{anonymous},
-                #{timeStamp})
+                UNIX_TIMESTAMP())
     </insert>
     <insert id="comment">
         INSERT INTO bottle_reply (bottleId, qq, nick, content, anonymous, timeStamp)
-        VALUES (#{bottleId}, #{qq}, #{nick}, #{content}, #{anonymous}, #{timeStamp})
+        VALUES (#{bottleId}, #{qq}, #{nick}, #{content}, #{anonymous}, UNIX_TIMESTAMP())
     </insert>
     <insert id="thumbs">
         INSERT INTO bottle_thumbs(qq, id, thumbsUp, timeStamp)
-        VALUES (#{qq}, #{id}, #{thumbsUp}, #{timeStamp})
+        VALUES (#{qq}, #{id}, #{thumbsUp}, UNIX_TIMESTAMP())
         ON DUPLICATE KEY UPDATE thumbsUp = #{thumbsUp}
     </insert>
     <insert id="collect">
         REPLACE INTO bottle_favorites(qq, id, timeStamp)
-        VALUES (#{qq}, #{id}, #{timeStamp})
+        VALUES (#{qq}, #{id}, UNIX_TIMESTAMP())
     </insert>
+    <update id="updateBottleState">
+        REPLACE INTO bottle_state (id, good, bad, lastUpdated)
+        SELECT id,
+               SUM(IF(thumbsUp = 1, 1, 0)) AS good,
+               SUM(IF(thumbsUp = 0, 1, 0)) AS bad,
+               UNIX_TIMESTAMP()
+        FROM bottle_thumbs
+        GROUP BY id;
+    </update>
     <delete id="deleteBottle">
-        DELETE bottle,bottle_reply,bottle_thumbs,bottle_favorites
-        FROM bottle LEFT JOIN bottle_reply ON bottle.id = bottle_reply.bottleId
-        LEFT JOIN bottle_thumbs ON bottle.id = bottle_thumbs.id
-        LEFT JOIN bottle_favorites ON bottle.id = bottle_favorites.id
+        DELETE bottle
         <where>
             bottle.id = #{id} AND (
             bottle.qq = #{qq} OR #{qq} in
@@ -55,15 +61,9 @@
     <delete id="clearBottle">
         DELETE bottle,bottle_reply,bottle_thumbs,bottle_favorites
         FROM bottle
-                 LEFT JOIN bottle_reply ON bottle.id = bottle_reply.bottleId
-                 LEFT JOIN bottle_thumbs ON bottle.id = bottle_thumbs.id
-                 LEFT JOIN bottle_favorites ON bottle.id = bottle_favorites.id
-        WHERE (SELECT thumbs_down
-               FROM (SELECT COUNT(*) AS thumbs_down FROM bottle_thumbs WHERE id = bottle.id AND thumbsUp = 0) AS a) - 1
+        WHERE (COALESCE((SELECT bad FROM bottle_state WHERE id = bottle.id), 0))
                   -
-              (SELECT thumbs_up
-               FROM (SELECT COUNT(*) AS thumbs_up FROM bottle_thumbs WHERE id = bottle.id AND thumbsUp = 1) AS b) * 2 >
-              0
+              (COALESCE((SELECT good FROM bottle_state WHERE id = bottle.id), 0)) > 1
     </delete>
     <select id="pickBottle" resultType="com.rainchain.jasmine.entity.Bottle">
         SELECT *
@@ -75,10 +75,10 @@
         FROM bottle_reply
         WHERE bottleId = #{bottleId};
     </select>
-    <select id="getThumbs" resultType="java.lang.String">
-        SELECT CONCAT(IFNULL((SELECT COUNT(*) FROM bottle_thumbs WHERE id = #{id} AND thumbsUp = 1), '0'),
-                      ',',
-                      IFNULL((SELECT COUNT(*) FROM bottle_thumbs WHERE id = #{id} AND thumbsUp = 0), '0'))
+    <select id="getThumbs" resultType="com.rainchain.jasmine.entity.BottleState">
+        SELECT *
+        from bottle_state
+        WHERE id = #{id};
     </select>
     <select id="pickBottleById" resultType="com.rainchain.jasmine.entity.Bottle">
         SELECT *
@@ -119,5 +119,25 @@
     <select id="getNum" resultType="java.lang.Integer">
         SELECT COUNT(*)
         FROM bottle
+    </select>
+    <select id="pickWeightedBottle" resultType="com.rainchain.jasmine.entity.Bottle">
+        SELECT b.*
+        FROM bottle b
+                 LEFT JOIN
+             bottle_state bs ON b.id = bs.id
+        ORDER BY RAND() * (
+            POWER((COALESCE(bs.good, 0) + 5) / (COALESCE(bs.good, 0) + COALESCE(bs.bad, 0) + 10), 0.5) * (1 + 1 *
+                                                                                                              GREATEST(
+                                                                                                                      0.1,
+                                                                                                                      EXP(GREATEST(
+                                                                                                                              -50,
+                                                                                                                              -((UNIX_TIMESTAMP() - b.timeStamp) / 86400) /
+                                                                                                                              (14 *
+                                                                                                                               (1 +
+                                                                                                                                3 *
+                                                                                                                                (COALESCE(bs.good, 0) /
+                                                                                                                                 (COALESCE(bs.good, 0) + COALESCE(bs.bad, 0) + 1)))))))))
+            DESC
+        LIMIT 1;
     </select>
 </mapper>

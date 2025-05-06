@@ -1,10 +1,7 @@
 package com.rainchain.jasmine.service;
 
 import com.rainchain.jasmine.component.SearchBottleResult;
-import com.rainchain.jasmine.entity.Bottle;
-import com.rainchain.jasmine.entity.BottleFavorites;
-import com.rainchain.jasmine.entity.BottleReply;
-import com.rainchain.jasmine.entity.BottleThumbs;
+import com.rainchain.jasmine.entity.*;
 import com.rainchain.jasmine.exception.OperationFailException;
 import com.rainchain.jasmine.mapper.amusement.BottleMapper;
 import org.springframework.stereotype.Service;
@@ -22,12 +19,22 @@ public class BottleService {
     @Resource
     private BottleMapper bottleMapper;
 
-    public Bottle pickBottle(Integer id) {
-        Bottle bottle = null == id ? bottleMapper.pickBottle(bottleMapper.getOffset()) : bottleMapper.pickBottleById(id);
-        //捡到尸体直接删除
-        if (bottle.getType() == 0) {
+    public Bottle pickBottle(Integer id, boolean random) {
+        // 根据条件选择合适的漂流瓶
+        Bottle bottle = id != null
+                // 优先根据ID获取指定瓶子
+                ? bottleMapper.pickBottleById(id)
+                : random
+                //  完全随机
+                ? bottleMapper.pickBottle(bottleMapper.getOffset())
+                // 根据权重随机选择
+                : bottleMapper.pickWeightedBottle();
+
+        // 如果捡到"尸体"(type=0)类型的漂流瓶，自动删除
+        if (bottle != null && bottle.getType() == 0) {
             bottleMapper.deleteBottleOnly(bottle.getId());
         }
+
         return bottle;
     }
 
@@ -54,7 +61,7 @@ public class BottleService {
         bottleMapper.thumbs(bottleThumbs);
     }
 
-    public String getThumbs(Integer id) {
+    public BottleState getThumbs(Integer id) {
         return bottleMapper.getThumbs(id);
     }
 

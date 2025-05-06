@@ -33,7 +33,7 @@ public class BottleFavorites implements Serializable {
      * 时间戳
      */
     @TableField(value = "timeStamp")
-    private Long timeStamp = System.currentTimeMillis() + 28800000L;
+    private Long timeStamp;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

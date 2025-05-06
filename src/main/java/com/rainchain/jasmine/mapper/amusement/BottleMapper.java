@@ -1,10 +1,7 @@
 package com.rainchain.jasmine.mapper.amusement;
 
 import com.rainchain.jasmine.component.SearchBottleResult;
-import com.rainchain.jasmine.entity.Bottle;
-import com.rainchain.jasmine.entity.BottleFavorites;
-import com.rainchain.jasmine.entity.BottleReply;
-import com.rainchain.jasmine.entity.BottleThumbs;
+import com.rainchain.jasmine.entity.*;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -18,6 +15,9 @@ import java.util.List;
 public interface BottleMapper {
     Bottle pickBottle(int offset);
 
+    // 根据权重随机捡瓶子（结合时间因素和贝叶斯平均的权重计算）
+    Bottle pickWeightedBottle();
+
     int getOffset();
 
     Bottle pickBottleById(Integer id);
@@ -30,7 +30,7 @@ public interface BottleMapper {
 
     void thumbs(BottleThumbs bottleThumbs);
 
-    String getThumbs(Integer id);
+    BottleState getThumbs(Integer id);
 
     List<SearchBottleResult> searchBottleByQq(String qq);
 
@@ -53,4 +53,6 @@ public interface BottleMapper {
     int getNum();
 
     int clearBottle();
+
+    void updateBottleState();
 }

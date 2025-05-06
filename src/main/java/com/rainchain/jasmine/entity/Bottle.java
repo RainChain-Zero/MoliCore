@@ -71,7 +71,7 @@ public class Bottle implements Serializable {
      * 丢漂流瓶的时间戳
      */
     @TableField(value = "timeStamp")
-    private Long timeStamp = System.currentTimeMillis() + 8 * 60 * 60 * 1000L;
+    private Long timeStamp;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

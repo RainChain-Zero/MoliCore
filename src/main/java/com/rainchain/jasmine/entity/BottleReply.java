@@ -59,7 +59,7 @@ public class BottleReply implements Serializable {
      * 回复的时间戳
      */
     @TableField(value = "timeStamp")
-    private Long timeStamp = System.currentTimeMillis() + 28800000L;
+    private Long timeStamp;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

@@ -1,10 +1,7 @@
 package com.rainchain.jasmine.controller;
 
 import com.rainchain.jasmine.component.SearchBottleResult;
-import com.rainchain.jasmine.entity.Bottle;
-import com.rainchain.jasmine.entity.BottleFavorites;
-import com.rainchain.jasmine.entity.BottleReply;
-import com.rainchain.jasmine.entity.BottleThumbs;
+import com.rainchain.jasmine.entity.*;
 import com.rainchain.jasmine.service.BottleService;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,8 +24,10 @@ public class BottleController {
     private final List<String> admin = List.of("3032902237", "2677409596", "2595928998", "839968342", "751766424", "1298754454");
 
     @GetMapping("/pick")
-    public Bottle pickBottle(@RequestParam(value = "id", required = false) Integer id) {
-        return bottleService.pickBottle(id);
+    // 传入random参数，标记是否随机，还是采用权重随机
+    public Bottle pickBottle(@RequestParam(value = "id", required = false) Integer id,
+                             @RequestParam(value = "random", defaultValue = "false") boolean random) {
+        return bottleService.pickBottle(id, random);
     }
 
     @PostMapping("/jumpSea")
@@ -65,7 +64,7 @@ public class BottleController {
 
     //返回"赞数,踩数"
     @GetMapping("/getThumbs")
-    public String getThumbs(@RequestParam("id") Integer id) {
+    public BottleState getThumbs(@RequestParam("id") Integer id) {
         return bottleService.getThumbs(id);
     }
 
